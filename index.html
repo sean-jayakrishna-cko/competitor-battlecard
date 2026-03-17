@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Strategic Coverage Battlecard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .badge { @apply px-2 py-0.5 rounded text-[10px] font-bold uppercase mr-1 mb-1 border; }
+        .supported { @apply bg-emerald-50 text-emerald-700 border-emerald-200; }
+        .partial { @apply bg-amber-50 text-amber-700 border-amber-200; }
+        .not_available { @apply bg-rose-50 text-rose-700 border-rose-200; }
+    </style>
+</head>
+<body class="bg-gray-50 p-8">
+    <div class="max-w-7xl mx-auto">
+        <header class="flex justify-between items-center mb-8">
+            <div>
+                <h1 class="text-3xl font-bold text-gray-900">Competitor Coverage Battlecard</h1>
+                <p class="text-gray-500">Live intelligence aggregator</p>
+            </div>
+            <div class="flex space-x-2">
+                <button onclick="filterRegion('All')" class="px-4 py-2 bg-white border rounded-md hover:bg-gray-100">All</button>
+                <button onclick="filterRegion('APAC')" class="px-4 py-2 bg-white border rounded-md hover:bg-gray-100">APAC</button>
+                <button onclick="filterRegion('LATAM')" class="px-4 py-2 bg-white border rounded-md hover:bg-gray-100">LATAM</button>
+                <button onclick="filterRegion('North America')" class="px-4 py-2 bg-white border rounded-md hover:bg-gray-100">NA</button>
+            </div>
+        </header>
+
+        <div class="bg-white shadow-sm rounded-lg overflow-hidden border border-gray-200">
+            <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Country</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Flow</th>
+                        <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Stripe</th>
+                        <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Adyen</th>
+                    </tr>
+                </thead>
+                <tbody id="main-table" class="bg-white divide-y divide-gray-200 text-sm">
+                    </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        let fullData = {};
+        const comps = ['stripe', 'adyen'];
+
+        async function init() {
+            for (let c of comps) {
+                try {
+                    const response = await fetch(`./data/${c}.json`);
+                    fullData[c] = await response.json();
+                } catch (e) { console.error(`Missing ${c}.json`); }
+            }
+            renderTable('All');
+        }
+
+        function renderTable(regionFilter) {
+            const tbody = document.getElementById('main-table');
+            tbody.innerHTML = '';
+            
+            // Get unique list of countries across all loaded files
+            const allCountries = [...new Set(Object.values(fullData).flatMap(d => Object.keys(d.Countries)))].sort();
+
+            allCountries.forEach(country => {
+                const countryRegion = fullData['stripe']?.Countries[country]?.region || fullData['adyen']?.Countries[country]?.region;
+                if (regionFilter !== 'All' && countryRegion !== regionFilter) return;
+
+                ['domestic', 'cross_border'].forEach((flow, i) => {
+                    const tr = document.createElement('tr');
+                    if (i === 0) {
+                        tr.innerHTML = `<td rowspan="2" class="px-6 py-4 font-bold text-gray-900 border-r">${country} <br><span class="text-[10px] font-normal text-gray-400">${countryRegion}</span></td>`;
+                    }
+                    tr.innerHTML += `<td class="px-6 py-4 text-gray-500 italic border-r">${flow.replace('_','-')}</td>`;
+                    
+                    comps.forEach(c => {
+                        const cellData = fullData[c]?.Countries[country]?.[flow];
+                        const td = document.createElement('td');
+                        td.className = `px-4 py-4 text-center border-r ${cellData ? cellData.status : ''}`;
+                        
+                        if (cellData) {
+                            const tags = cellData.tags.map(t => `<span class="badge">${t}</span>`).join('');
+                            td.innerHTML = `<div class="font-bold text-lg">${cellData.status === 'supported' ? '✓' : '×'}</div>
+                                            <div class="flex flex-wrap justify-center">${tags}</div>
+                                            <div class="text-[9px] text-gray-400 mt-1">${cellData.notes}</div>`;
+                        } else {
+                            td.innerHTML = `<span class="text-gray-300">No Data</span>`;
+                        }
+                        tr.appendChild(td);
+                    });
+                    tbody.appendChild(tr);
+                });
+            });
+        }
+
+        function filterRegion(region) { renderTable(region); }
+        init();
+    </script>
+</body>
+</html>
