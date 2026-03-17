@@ -1,0 +1,168 @@
+{
+  "Metadata": {
+    "Competitor": "Adyen",
+    "LastUpdated": "2026-03-17"
+  },
+  "Countries": {
+    "Australia": {
+      "region": "APAC",
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "card",
+          "bank"
+        ],
+        "notes": "Active"
+      },
+      "cross_border": {
+        "status": "not_available",
+        "tags": [],
+        "notes": "Global Rails Only"
+      }
+    },
+    "Singapore": {
+      "region": "APAC",
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "card",
+          "bank"
+        ],
+        "notes": "Active"
+      },
+      "cross_border": {
+        "status": "not_available",
+        "tags": [],
+        "notes": "Global Rails Only"
+      }
+    },
+    "Japan": {
+      "region": "APAC",
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "card",
+          "bank"
+        ],
+        "notes": "Active"
+      },
+      "cross_border": {
+        "status": "not_available",
+        "tags": [],
+        "notes": "Global Rails Only"
+      }
+    },
+    "Brazil": {
+      "region": "LATAM",
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "card",
+          "bank"
+        ],
+        "notes": "Active"
+      },
+      "cross_border": {
+        "status": "not_available",
+        "tags": [],
+        "notes": "Global Rails Only"
+      }
+    },
+    "Mexico": {
+      "region": "LATAM",
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "card",
+          "bank"
+        ],
+        "notes": "Active"
+      },
+      "cross_border": {
+        "status": "not_available",
+        "tags": [],
+        "notes": "Global Rails Only"
+      }
+    },
+    "Canada": {
+      "region": "North America",
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "card",
+          "bank"
+        ],
+        "notes": "Active"
+      },
+      "cross_border": {
+        "status": "not_available",
+        "tags": [],
+        "notes": "Global Rails Only"
+      }
+    },
+    "United States": {
+      "region": "North America",
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "card",
+          "bank"
+        ],
+        "notes": "Active"
+      },
+      "cross_border": {
+        "status": "not_available",
+        "tags": [],
+        "notes": "Global Rails Only"
+      }
+    },
+    "United Kingdom": {
+      "region": "Europe",
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "card",
+          "bank"
+        ],
+        "notes": "Active"
+      },
+      "cross_border": {
+        "status": "not_available",
+        "tags": [],
+        "notes": "Global Rails Only"
+      }
+    },
+    "Netherlands": {
+      "region": "Europe",
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "card",
+          "bank"
+        ],
+        "notes": "Active"
+      },
+      "cross_border": {
+        "status": "not_available",
+        "tags": [],
+        "notes": "Global Rails Only"
+      }
+    },
+    "Germany": {
+      "region": "Europe",
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "card",
+          "bank"
+        ],
+        "notes": "Active"
+      },
+      "cross_border": {
+        "status": "not_available",
+        "tags": [],
+        "notes": "Global Rails Only"
+      }
+    }
+  }
+}
