@@ -41,6 +41,7 @@
                         <th class="px-4 py-4 text-left text-[11px] font-bold text-slate-400 uppercase tracking-widest w-24">Flow</th>
                         <th class="px-6 py-4 text-center text-[11px] font-bold text-slate-400 uppercase tracking-widest border-l border-slate-200">Stripe</th>
                         <th class="px-6 py-4 text-center text-[11px] font-bold text-slate-400 uppercase tracking-widest border-l border-slate-200">Adyen</th>
+                        <th class="px-6 py-4 text-center text-[11px] font-bold text-slate-400 uppercase tracking-widest border-l border-slate-200">WorldPay</th>
                     </tr>
                 </thead>
                 <tbody id="main-table" class="bg-white divide-y divide-slate-200">
@@ -51,7 +52,7 @@
 
     <script>
         let fullData = {};
-        const comps = ['stripe', 'adyen'];
+        const comps = ['stripe', 'adyen', 'worldpay'];
 
         async function init() {
             for (let c of comps) {
