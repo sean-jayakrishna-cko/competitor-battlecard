@@ -8,52 +8,192 @@
       "region": "APAC",
       "domestic": {
         "status": "supported",
-        "tags": ["card", "eftpos", "Apple Pay", "Google Pay", "POLi"],
-        "notes": "Direct local acquiring"
+        "tags": [
+          "card",
+          "APM",
+          "Wallets",
+          "eftpos"
+        ],
+        "notes": "Unified platform access"
       },
       "cross_border": {
         "status": "supported",
-        "tags": ["card"],
-        "notes": "International processing"
+        "tags": [
+          "card"
+        ],
+        "notes": "Full global acquiring"
+      }
+    },
+    "Singapore": {
+      "region": "APAC",
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "card",
+          "APM",
+          "Wallets"
+        ],
+        "notes": "Unified platform access"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "card"
+        ],
+        "notes": "Full global acquiring"
+      }
+    },
+    "Japan": {
+      "region": "APAC",
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "card",
+          "APM",
+          "Wallets"
+        ],
+        "notes": "Unified platform access"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "card"
+        ],
+        "notes": "Full global acquiring"
       }
     },
     "Brazil": {
       "region": "LATAM",
       "domestic": {
         "status": "supported",
-        "tags": ["card", "Pix", "Boleto", "SafetyPay"],
-        "notes": "Full APM support"
+        "tags": [
+          "card",
+          "APM",
+          "Wallets",
+          "Pix"
+        ],
+        "notes": "Unified platform access"
       },
       "cross_border": {
         "status": "supported",
-        "tags": ["card"],
-        "notes": "International rails"
+        "tags": [
+          "card"
+        ],
+        "notes": "Full global acquiring"
+      }
+    },
+    "Mexico": {
+      "region": "LATAM",
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "card",
+          "APM",
+          "Wallets"
+        ],
+        "notes": "Unified platform access"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "card"
+        ],
+        "notes": "Full global acquiring"
       }
     },
     "Canada": {
       "region": "North America",
       "domestic": {
         "status": "supported",
-        "tags": ["card", "InstaDebit", "Apple Pay"],
-        "notes": "Local CAD processing"
+        "tags": [
+          "card",
+          "APM",
+          "Wallets"
+        ],
+        "notes": "Unified platform access"
       },
       "cross_border": {
         "status": "supported",
-        "tags": ["card"],
-        "notes": "Standard international"
+        "tags": [
+          "card"
+        ],
+        "notes": "Full global acquiring"
+      }
+    },
+    "United States": {
+      "region": "North America",
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "card",
+          "APM",
+          "Wallets"
+        ],
+        "notes": "Unified platform access"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "card"
+        ],
+        "notes": "Full global acquiring"
       }
     },
     "United Kingdom": {
       "region": "Europe",
       "domestic": {
         "status": "supported",
-        "tags": ["card", "Apple Pay", "Google Pay", "PayPal", "Klarna"],
-        "notes": "Primary market hub"
+        "tags": [
+          "card",
+          "APM",
+          "Wallets"
+        ],
+        "notes": "Unified platform access"
       },
       "cross_border": {
         "status": "supported",
-        "tags": ["card"],
-        "notes": "Europe regional lead"
+        "tags": [
+          "card"
+        ],
+        "notes": "Full global acquiring"
+      }
+    },
+    "Netherlands": {
+      "region": "Europe",
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "card",
+          "APM",
+          "Wallets"
+        ],
+        "notes": "Unified platform access"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "card"
+        ],
+        "notes": "Full global acquiring"
+      }
+    },
+    "Germany": {
+      "region": "Europe",
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "card",
+          "APM",
+          "Wallets"
+        ],
+        "notes": "Unified platform access"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "card"
+        ],
+        "notes": "Full global acquiring"
       }
     }
   }
