@@ -1,0 +1,60 @@
+{
+  "Metadata": {
+    "Competitor": "WorldPay",
+    "LastUpdated": "2026-03-17"
+  },
+  "Countries": {
+    "Australia": {
+      "region": "APAC",
+      "domestic": {
+        "status": "supported",
+        "tags": ["card", "eftpos", "Apple Pay", "Google Pay", "POLi"],
+        "notes": "Direct local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": ["card"],
+        "notes": "International processing"
+      }
+    },
+    "Brazil": {
+      "region": "LATAM",
+      "domestic": {
+        "status": "supported",
+        "tags": ["card", "Pix", "Boleto", "SafetyPay"],
+        "notes": "Full APM support"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": ["card"],
+        "notes": "International rails"
+      }
+    },
+    "Canada": {
+      "region": "North America",
+      "domestic": {
+        "status": "supported",
+        "tags": ["card", "InstaDebit", "Apple Pay"],
+        "notes": "Local CAD processing"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": ["card"],
+        "notes": "Standard international"
+      }
+    },
+    "United Kingdom": {
+      "region": "Europe",
+      "domestic": {
+        "status": "supported",
+        "tags": ["card", "Apple Pay", "Google Pay", "PayPal", "Klarna"],
+        "notes": "Primary market hub"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": ["card"],
+        "notes": "Europe regional lead"
+      }
+    }
+  }
+}
