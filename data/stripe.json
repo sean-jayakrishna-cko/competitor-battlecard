@@ -1,7 +1,7 @@
 {
   "Metadata": {
     "Competitor": "Stripe",
-    "LastUpdated": "2026-03-17"
+    "LastUpdated": "2026-03-18"
   },
   "Countries": {
     "Australia": {
@@ -9,19 +9,28 @@
       "domestic": {
         "status": "supported",
         "tags": [
-          "card",
-          "Apple Pay",
-          "Google Pay",
-          "Link"
+          "Visa",
+          "Mastercard",
+          "Discover",
+          "Diners Club",
+          "JCB",
+          "UnionPay",
+          "eftpos Australia",
+          "Interac",
+          "Cartes Bancaires",
+          "Bancontact",
+          "Elo",
+          "PostFinance"
         ],
-        "notes": "Standard Coverage"
+        "notes": "Full rail integration"
       },
       "cross_border": {
         "status": "supported",
         "tags": [
-          "card"
+          "Visa",
+          "Mastercard"
         ],
-        "notes": "International"
+        "notes": "Global acquiring"
       }
     },
     "Singapore": {
@@ -29,19 +38,28 @@
       "domestic": {
         "status": "supported",
         "tags": [
-          "card",
-          "Apple Pay",
-          "Google Pay",
-          "Link"
+          "Visa",
+          "Mastercard",
+          "Discover",
+          "Diners Club",
+          "JCB",
+          "UnionPay",
+          "eftpos Australia",
+          "Interac",
+          "Cartes Bancaires",
+          "Bancontact",
+          "Elo",
+          "PostFinance"
         ],
-        "notes": "Standard Coverage"
+        "notes": "Full rail integration"
       },
       "cross_border": {
         "status": "supported",
         "tags": [
-          "card"
+          "Visa",
+          "Mastercard"
         ],
-        "notes": "International"
+        "notes": "Global acquiring"
       }
     },
     "Japan": {
@@ -49,19 +67,28 @@
       "domestic": {
         "status": "supported",
         "tags": [
-          "card",
-          "Apple Pay",
-          "Google Pay",
-          "Link"
+          "Visa",
+          "Mastercard",
+          "Discover",
+          "Diners Club",
+          "JCB",
+          "UnionPay",
+          "eftpos Australia",
+          "Interac",
+          "Cartes Bancaires",
+          "Bancontact",
+          "Elo",
+          "PostFinance"
         ],
-        "notes": "Standard Coverage"
+        "notes": "Full rail integration"
       },
       "cross_border": {
         "status": "supported",
         "tags": [
-          "card"
+          "Visa",
+          "Mastercard"
         ],
-        "notes": "International"
+        "notes": "Global acquiring"
       }
     },
     "Brazil": {
@@ -69,19 +96,28 @@
       "domestic": {
         "status": "supported",
         "tags": [
-          "card",
-          "Apple Pay",
-          "Google Pay",
-          "Link"
+          "Visa",
+          "Mastercard",
+          "Discover",
+          "Diners Club",
+          "JCB",
+          "UnionPay",
+          "eftpos Australia",
+          "Interac",
+          "Cartes Bancaires",
+          "Bancontact",
+          "Elo",
+          "PostFinance"
         ],
-        "notes": "Standard Coverage"
+        "notes": "Full rail integration"
       },
       "cross_border": {
         "status": "supported",
         "tags": [
-          "card"
+          "Visa",
+          "Mastercard"
         ],
-        "notes": "International"
+        "notes": "Global acquiring"
       }
     },
     "Mexico": {
@@ -89,19 +125,28 @@
       "domestic": {
         "status": "supported",
         "tags": [
-          "card",
-          "Apple Pay",
-          "Google Pay",
-          "Link"
+          "Visa",
+          "Mastercard",
+          "Discover",
+          "Diners Club",
+          "JCB",
+          "UnionPay",
+          "eftpos Australia",
+          "Interac",
+          "Cartes Bancaires",
+          "Bancontact",
+          "Elo",
+          "PostFinance"
         ],
-        "notes": "Standard Coverage"
+        "notes": "Full rail integration"
       },
       "cross_border": {
         "status": "supported",
         "tags": [
-          "card"
+          "Visa",
+          "Mastercard"
         ],
-        "notes": "International"
+        "notes": "Global acquiring"
       }
     },
     "Canada": {
@@ -109,19 +154,28 @@
       "domestic": {
         "status": "supported",
         "tags": [
-          "card",
-          "Apple Pay",
-          "Google Pay",
-          "Link"
+          "Visa",
+          "Mastercard",
+          "Discover",
+          "Diners Club",
+          "JCB",
+          "UnionPay",
+          "eftpos Australia",
+          "Interac",
+          "Cartes Bancaires",
+          "Bancontact",
+          "Elo",
+          "PostFinance"
         ],
-        "notes": "Standard Coverage"
+        "notes": "Full rail integration"
       },
       "cross_border": {
         "status": "supported",
         "tags": [
-          "card"
+          "Visa",
+          "Mastercard"
         ],
-        "notes": "International"
+        "notes": "Global acquiring"
       }
     },
     "United States": {
@@ -129,19 +183,28 @@
       "domestic": {
         "status": "supported",
         "tags": [
-          "card",
-          "Apple Pay",
-          "Google Pay",
-          "Link"
+          "Visa",
+          "Mastercard",
+          "Discover",
+          "Diners Club",
+          "JCB",
+          "UnionPay",
+          "eftpos Australia",
+          "Interac",
+          "Cartes Bancaires",
+          "Bancontact",
+          "Elo",
+          "PostFinance"
         ],
-        "notes": "Standard Coverage"
+        "notes": "Full rail integration"
       },
       "cross_border": {
         "status": "supported",
         "tags": [
-          "card"
+          "Visa",
+          "Mastercard"
         ],
-        "notes": "International"
+        "notes": "Global acquiring"
       }
     },
     "United Kingdom": {
@@ -149,19 +212,28 @@
       "domestic": {
         "status": "supported",
         "tags": [
-          "card",
-          "Apple Pay",
-          "Google Pay",
-          "Link"
+          "Visa",
+          "Mastercard",
+          "Discover",
+          "Diners Club",
+          "JCB",
+          "UnionPay",
+          "eftpos Australia",
+          "Interac",
+          "Cartes Bancaires",
+          "Bancontact",
+          "Elo",
+          "PostFinance"
         ],
-        "notes": "Standard Coverage"
+        "notes": "Full rail integration"
       },
       "cross_border": {
         "status": "supported",
         "tags": [
-          "card"
+          "Visa",
+          "Mastercard"
         ],
-        "notes": "International"
+        "notes": "Global acquiring"
       }
     },
     "Netherlands": {
@@ -169,19 +241,28 @@
       "domestic": {
         "status": "supported",
         "tags": [
-          "card",
-          "Apple Pay",
-          "Google Pay",
-          "Link"
+          "Visa",
+          "Mastercard",
+          "Discover",
+          "Diners Club",
+          "JCB",
+          "UnionPay",
+          "eftpos Australia",
+          "Interac",
+          "Cartes Bancaires",
+          "Bancontact",
+          "Elo",
+          "PostFinance"
         ],
-        "notes": "Standard Coverage"
+        "notes": "Full rail integration"
       },
       "cross_border": {
         "status": "supported",
         "tags": [
-          "card"
+          "Visa",
+          "Mastercard"
         ],
-        "notes": "International"
+        "notes": "Global acquiring"
       }
     },
     "Germany": {
@@ -189,19 +270,28 @@
       "domestic": {
         "status": "supported",
         "tags": [
-          "card",
-          "Apple Pay",
-          "Google Pay",
-          "Link"
+          "Visa",
+          "Mastercard",
+          "Discover",
+          "Diners Club",
+          "JCB",
+          "UnionPay",
+          "eftpos Australia",
+          "Interac",
+          "Cartes Bancaires",
+          "Bancontact",
+          "Elo",
+          "PostFinance"
         ],
-        "notes": "Standard Coverage"
+        "notes": "Full rail integration"
       },
       "cross_border": {
         "status": "supported",
         "tags": [
-          "card"
+          "Visa",
+          "Mastercard"
         ],
-        "notes": "International"
+        "notes": "Global acquiring"
       }
     }
   }
