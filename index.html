@@ -2,52 +2,59 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Strategic Coverage Battlecard</title>
+    <title>Card Rail Intelligence Battlecard v3</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Signature soft green badge styling from mockup */
-        .pm-badge { 
-            @apply inline-flex items-center px-3 py-0.5 rounded-full text-[10px] font-bold uppercase mr-2 mb-1 tracking-wider;
+        /* v3 Pill Styling: Increased padding, full roundness, and wider margins */
+        .rail-pill { 
+            @apply inline-flex items-center px-4 py-1 rounded-full text-[10px] font-bold uppercase mr-2 mb-1 tracking-wider border transition-all;
             background-color: #E6F4EA; 
             color: #137333;
-            border: 1px solid #CEEAD6;
+            border-color: #CEEAD6;
         }
-        .status-supported { color: #137333; }
-        .status-not-available { color: #D93025; }
-        .status-partial { color: #E37400; }
+        .status-supported { @apply text-emerald-600 font-black text-2xl; }
+        .status-partial { @apply text-amber-500 font-black text-2xl; }
+        .status-not_available { @apply text-rose-500 font-black text-2xl; }
+        
+        /* Row highlighting for better scannability */
+        .country-row:hover { background-color: #f8fafc; }
     </style>
 </head>
-<body class="bg-[#F8F9FA] p-8 text-slate-800">
+<body class="bg-[#F1F5F9] p-8 text-slate-800">
     <div class="max-w-7xl mx-auto">
-        <header class="flex justify-between items-end mb-8 border-b pb-6 border-slate-200">
+        <header class="flex justify-between items-end mb-10 border-b border-slate-300 pb-8">
             <div>
-                <h1 class="text-3xl font-extrabold tracking-tight text-slate-900">Competitor Coverage Battlecard</h1>
-                <p class="text-slate-500 font-medium">Real-time regional payment intelligence aggregator</p>
+                <h1 class="text-4xl font-black tracking-tight text-slate-900 uppercase">Card Rail Battlecard</h1>
+                <p class="text-slate-500 font-semibold mt-2">Network Integration & Local Scheme Intelligence</p>
             </div>
-            <div class="flex space-x-1 p-1 bg-slate-200 rounded-lg">
-                <button onclick="filterRegion('All')" class="px-4 py-1.5 text-sm font-semibold rounded-md transition-all hover:bg-white/50 active:bg-white focus:bg-white shadow-sm">All</button>
-                <button onclick="filterRegion('APAC')" class="px-4 py-1.5 text-sm font-semibold rounded-md transition-all hover:bg-white/50 focus:bg-white">APAC</button>
-                <button onclick="filterRegion('LATAM')" class="px-4 py-1.5 text-sm font-semibold rounded-md transition-all hover:bg-white/50 focus:bg-white">LATAM</button>
-                <button onclick="filterRegion('North America')" class="px-4 py-1.5 text-sm font-semibold rounded-md transition-all hover:bg-white/50 focus:bg-white">NA</button>
-                <button onclick="filterRegion('Europe')" class="px-4 py-1.5 text-sm font-semibold rounded-md transition-all hover:bg-white/50 focus:bg-white">EU</button>
+            <div class="flex space-x-2 p-1.5 bg-slate-200 rounded-2xl shadow-inner">
+                <button onclick="filterRegion('All')" class="px-5 py-2 text-xs font-bold rounded-xl transition-all hover:bg-white/60 focus:bg-white focus:shadow-sm uppercase">All</button>
+                <button onclick="filterRegion('APAC')" class="px-5 py-2 text-xs font-bold rounded-xl transition-all hover:bg-white/60 focus:bg-white uppercase">APAC</button>
+                <button onclick="filterRegion('LATAM')" class="px-5 py-2 text-xs font-bold rounded-xl transition-all hover:bg-white/60 focus:bg-white uppercase">LATAM</button>
+                <button onclick="filterRegion('North America')" class="px-5 py-2 text-xs font-bold rounded-xl transition-all hover:bg-white/60 focus:bg-white uppercase">NA</button>
+                <button onclick="filterRegion('Europe')" class="px-5 py-2 text-xs font-bold rounded-xl transition-all hover:bg-white/60 focus:bg-white uppercase">EU</button>
             </div>
         </header>
 
-        <div class="bg-white shadow-xl rounded-xl overflow-hidden border border-slate-200">
+        <div class="bg-white shadow-2xl rounded-3xl overflow-hidden border border-slate-200">
             <table class="min-w-full divide-y divide-slate-200">
                 <thead class="bg-slate-50">
                     <tr>
-                        <th class="px-6 py-4 text-left text-[11px] font-bold text-slate-400 uppercase tracking-widest w-48">Country</th>
-                        <th class="px-4 py-4 text-left text-[11px] font-bold text-slate-400 uppercase tracking-widest w-24">Flow</th>
-                        <th class="px-6 py-4 text-center text-[11px] font-bold text-slate-400 uppercase tracking-widest border-l border-slate-200">Stripe</th>
-                        <th class="px-6 py-4 text-center text-[11px] font-bold text-slate-400 uppercase tracking-widest border-l border-slate-200">Adyen</th>
-                        <th class="px-6 py-4 text-center text-[11px] font-bold text-slate-400 uppercase tracking-widest border-l border-slate-200">WorldPay</th>
+                        <th class="px-8 py-5 text-left text-[11px] font-black text-slate-400 uppercase tracking-[0.2em] w-64">Market</th>
+                        <th class="px-4 py-5 text-left text-[11px] font-black text-slate-400 uppercase tracking-[0.2em] w-32">Acquiring</th>
+                        <th class="px-8 py-5 text-center text-[11px] font-black text-slate-400 uppercase tracking-[0.2em] border-l border-slate-100">Stripe</th>
+                        <th class="px-8 py-5 text-center text-[11px] font-black text-slate-400 uppercase tracking-[0.2em] border-l border-slate-100">Adyen</th>
+                        <th class="px-8 py-5 text-center text-[11px] font-black text-slate-400 uppercase tracking-[0.2em] border-l border-slate-100">WorldPay</th>
                     </tr>
                 </thead>
-                <tbody id="main-table" class="bg-white divide-y divide-slate-200">
+                <tbody id="main-table" class="bg-white divide-y divide-slate-100 text-sm font-medium">
                     </tbody>
             </table>
         </div>
+
+        <footer class="mt-12 mb-8 flex justify-center space-x-6">
+            <a href="extractor.html" class="text-[10px] text-slate-400 hover:text-indigo-600 transition-colors uppercase tracking-widest font-black border-b border-transparent hover:border-indigo-600">Admin: Update Rails →</a>
+        </footer>
     </div>
 
     <script>
@@ -57,9 +64,10 @@
         async function init() {
             for (let c of comps) {
                 try {
-                    const response = await fetch(`./data/${c}.json`);
+                    // Cache buster for live GitHub deployment
+                    const response = await fetch(`./data/${c}.json?t=${Date.now()}`);
                     fullData[c] = await response.json();
-                } catch (e) { console.warn(`Note: ${c}.json not found yet.`); }
+                } catch (e) { console.warn(`${c}.json not found.`); }
             }
             renderTable('All');
         }
@@ -76,38 +84,34 @@
 
                 ['domestic', 'cross_border'].forEach((flow, i) => {
                     const tr = document.createElement('tr');
-                    tr.className = "hover:bg-slate-50 transition-colors";
+                    tr.className = "country-row transition-all";
 
                     if (i === 0) {
-                        tr.innerHTML = `<td rowspan="2" class="px-6 py-6 font-bold text-slate-900 border-r border-slate-100 align-top">
-                                            <div class="text-base">${country}</div>
-                                            <div class="text-[10px] text-slate-400 uppercase tracking-tighter mt-1">${countryRegion}</div>
+                        tr.innerHTML = `<td rowspan="2" class="px-8 py-8 font-extrabold text-slate-900 border-r border-slate-50 align-top">
+                                            <div class="text-lg tracking-tight">${country}</div>
+                                            <div class="text-[9px] text-slate-400 uppercase mt-1 tracking-widest">${countryRegion}</div>
                                         </td>`;
                     }
 
-                    // Capitalized and styled Flow column
-                    const displayFlow = flow === 'domestic' ? 'Domestic' : 'Cross-border';
-                    tr.innerHTML += `<td class="px-4 py-4 text-slate-400 font-medium text-[11px] border-r border-slate-100">${displayFlow}</td>`;
+                    const flowLabel = flow === 'domestic' ? 'Domestic' : 'Cross-border';
+                    tr.innerHTML += `<td class="px-4 py-6 text-slate-400 font-bold text-[10px] uppercase border-r border-slate-50">${flowLabel}</td>`;
                     
                     comps.forEach(c => {
-                        const cellData = fullData[c]?.Countries[country]?.[flow];
+                        const cell = fullData[c]?.Countries[country]?.[flow];
                         const td = document.createElement('td');
-                        td.className = `px-6 py-4 text-center border-l border-slate-100 align-middle`;
+                        td.className = `px-8 py-6 text-center border-l border-slate-50 align-middle`;
                         
-                        if (cellData) {
-                            const statusIcon = cellData.status === 'supported' ? '✓' : '×';
-                            const statusColor = `status-${cellData.status}`;
-                            
-                            // Map tags individually to badges
-                            const tagsHtml = cellData.tags.map(t => `<span class="pm-badge">${t}</span>`).join('');
+                        if (cell) {
+                            const icon = cell.status === 'supported' ? '✓' : (cell.status === 'partial' ? '≈' : '×');
+                            const pills = cell.tags.map(t => `<span class="rail-pill">${t}</span>`).join('');
                             
                             td.innerHTML = `
-                                <div class="font-black text-xl mb-2 ${statusColor}">${statusIcon}</div>
-                                <div class="flex flex-wrap justify-center min-h-[20px]">${tagsHtml}</div>
-                                <div class="text-[10px] text-slate-400 mt-2 font-medium italic">${cellData.notes}</div>
+                                <div class="status-${cell.status} mb-3">${icon}</div>
+                                <div class="flex flex-wrap justify-center max-w-xs mx-auto">${pills}</div>
+                                <div class="text-[9px] text-slate-400 mt-3 italic font-semibold leading-relaxed px-4">${cell.notes}</div>
                             `;
                         } else {
-                            td.innerHTML = `<span class="text-slate-300 font-light italic text-xs text-opacity-50">Pending Intel</span>`;
+                            td.innerHTML = `<span class="text-slate-200 font-light italic text-[10px] uppercase tracking-widest">No Intel</span>`;
                         }
                         tr.appendChild(td);
                     });
@@ -120,9 +124,4 @@
         init();
     </script>
 </body>
-<footer class="mt-12 pb-8 text-center">
-    <a href="extractor.html" class="text-xs text-slate-400 hover:text-slate-600 transition-colors uppercase tracking-widest font-bold">
-        Update Data Source →
-    </a>
-</footer>
 </html>
