@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Unified Intelligence Extractor v11</title>
+    <title>Card Rail Intelligence Extractor v12</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-slate-50 p-10 font-sans">
     <div class="max-w-4xl mx-auto bg-white p-8 rounded-2xl shadow-xl border border-slate-200">
-        <h1 class="text-2xl font-bold text-slate-900 mb-2">Unified Data Normalizer</h1>
-        <p class="text-slate-500 mb-6">Paste raw competitor payloads to generate standardized JSON for the dashboard.</p>
+        <h1 class="text-2xl font-bold text-slate-900 mb-2">Card Rail Extractor</h1>
+        <p class="text-slate-500 mb-6">Extracting local card schemes and global network integrations.</p>
         
-        <textarea id="input" class="w-full h-64 p-4 border-2 border-slate-100 rounded-xl font-mono text-xs focus:border-indigo-500 focus:outline-none mb-6" placeholder="Paste Postman/HTML response here..."></textarea>
+        <textarea id="input" class="w-full h-64 p-4 border-2 border-slate-100 rounded-xl font-mono text-xs focus:border-indigo-500 mb-6" placeholder="Paste Postman/HTML payload here..."></textarea>
         
         <div class="grid grid-cols-3 gap-4">
-            <button onclick="process('Stripe')" class="bg-[#635bff] text-white py-4 rounded-lg font-bold hover:opacity-90 transition-all">Normalize Stripe</button>
-            <button onclick="process('Adyen')" class="bg-[#00d16a] text-white py-4 rounded-lg font-bold hover:opacity-90 transition-all">Normalize Adyen</button>
-            <button onclick="process('WorldPay')" class="bg-red-600 text-white py-4 rounded-lg font-bold hover:opacity-90 transition-all">Normalize WorldPay</button>
+            <button onclick="process('Stripe')" class="bg-[#635bff] text-white py-4 rounded-lg font-bold hover:opacity-90">Analyze Stripe Rails</button>
+            <button onclick="process('Adyen')" class="bg-[#00d16a] text-white py-4 rounded-lg font-bold hover:opacity-90">Analyze Adyen Rails</button>
+            <button onclick="process('WorldPay')" class="bg-red-600 text-white py-4 rounded-lg font-bold hover:opacity-90">Analyze WorldPay Rails</button>
         </div>
-        <div id="status" class="mt-4 p-4 rounded-lg hidden text-sm font-medium"></div>
+        <div id="status" class="mt-4 p-4 rounded-lg hidden text-sm font-medium text-emerald-700 bg-emerald-50"></div>
     </div>
 
     <script>
@@ -27,52 +27,59 @@
             "United Kingdom": "Europe", "Netherlands": "Europe", "Germany": "Europe"
         };
 
+        // Master Card Rail Definitions
+        const CARD_RAILS = {
+            "Global": ["Visa", "Mastercard", "AMEX", "Discover", "Diners Club", "JCB", "UnionPay"],
+            "Local": ["eftpos Australia", "Interac", "Cartes Bancaires", "Bancontact", "Elo", "Hipercard", "Dankort", "girocard", "V Pay", "PostFinance"]
+        };
+
         function process(comp) {
             const raw = document.getElementById('input').value;
             const results = {};
             const date = new Date().toISOString().split('T')[0];
 
             Object.keys(MASTER_CONFIG).forEach(country => {
-                let tags = ["card"];
+                let tags = [];
+                
+                // Identify integrated rails by scanning payload strings
+                [...CARD_RAILS.Global, ...CARD_RAILS.Local].forEach(rail => {
+                    if (raw.toLowerCase().includes(rail.toLowerCase())) {
+                        tags.push(rail);
+                    }
+                });
+
+                // Status Logic: Partial if missing a core local scheme for that market
                 let status = "supported";
-                let notes = "Verified via Payload";
+                if (country === "Australia" && !tags.includes("eftpos Australia")) status = "partial";
+                if (country === "Canada" && !tags.includes("Interac")) status = "partial";
+                if (country === "Brazil" && !tags.includes("Elo")) status = "partial";
 
-                // Competitor-Specific Heuristics
-                if (comp === 'Stripe') {
-                    if (raw.includes("Link")) tags.push("Link");
-                    if (raw.includes("Apple Pay")) tags.push("Apple Pay");
-                } else if (comp === 'Adyen') {
-                    if (raw.includes("bank")) tags.push("bank");
-                    if (country === "Brazil" && raw.includes("Pix")) tags.push("Pix");
-                } else if (comp === 'WorldPay') {
-                    if (raw.includes("APM")) tags.push("APM");
-                }
-
-                // Normalization into Master Schema
                 results[country] = {
                     "region": MASTER_CONFIG[country],
-                    "domestic": { "status": status, "tags": tags, "notes": notes },
-                    "cross_border": { "status": "supported", "tags": ["card"], "notes": "International" }
+                    "domestic": { 
+                        "status": status, 
+                        "tags": tags.length ? tags : ["Standard Cards"], 
+                        "notes": status === "partial" ? "Missing primary local rail" : "Full rail integration" 
+                    },
+                    "cross_border": { 
+                        "status": "supported", 
+                        "tags": ["Visa", "Mastercard"], 
+                        "notes": "Global acquiring" 
+                    }
                 };
             });
 
-            downloadJSON({ "Metadata": { "Competitor": comp, "LastUpdated": date }, "Countries": results }, comp);
-        }
-
-        function downloadJSON(obj, comp) {
-            const blob = new Blob([JSON.stringify(obj, null, 2)], {type: "application/json"});
+            const finalObj = { "Metadata": { "Competitor": comp, "LastUpdated": date }, "Countries": results };
+            const blob = new Blob([JSON.stringify(finalObj, null, 2)], {type: "application/json"});
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
             a.download = `${comp.toLowerCase()}.json`;
             a.click();
-            showStatus(`Successfully generated ${comp.toLowerCase()}.json`);
-        }
-
-        function showStatus(msg) {
+            
             const s = document.getElementById('status');
-            s.innerText = msg;
-            s.className = "mt-4 p-4 rounded-lg block bg-emerald-50 text-emerald-700";
+            s.innerText = `Successfully mapped card rails for ${comp}`;
+            s.classList.remove('hidden');
         }
     </script>
 </body>
