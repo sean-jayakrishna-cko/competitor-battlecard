@@ -1,28 +1,137 @@
 {
   "Metadata": {
     "Competitor": "Stripe",
-    "LastUpdated": "2026-03-18"
+    "LastUpdated": "2026-03-19"
   },
   "Countries": {
-    "Australia": {
-      "region": "APAC",
+    "Egypt": {
+      "region": "Middle East & North Africa",
       "domestic": {
+        "status": "not_available",
+        "tags": [],
+        "notes": "No local merchant entity"
+      },
+      "cross_border": {
         "status": "supported",
         "tags": [
           "Visa",
-          "Mastercard",
-          "Discover",
-          "Diners Club",
-          "JCB",
-          "UnionPay",
-          "eftpos Australia",
-          "Interac",
-          "Cartes Bancaires",
-          "Bancontact",
-          "Elo",
-          "PostFinance"
+          "Mastercard"
         ],
-        "notes": "Full rail integration"
+        "notes": "International card processing via global network"
+      }
+    },
+    "Kenya": {
+      "region": "Africa",
+      "domestic": {
+        "status": "not_available",
+        "tags": [],
+        "notes": "No local merchant entity"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard"
+        ],
+        "notes": "International card processing via global network"
+      }
+    },
+    "Morocco": {
+      "region": "Middle East & North Africa",
+      "domestic": {
+        "status": "not_available",
+        "tags": [],
+        "notes": "No local merchant entity"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard"
+        ],
+        "notes": "International card processing via global network"
+      }
+    },
+    "Mozambique": {
+      "region": "Africa",
+      "domestic": {
+        "status": "not_available",
+        "tags": [],
+        "notes": "No local merchant entity"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard"
+        ],
+        "notes": "International card processing via global network"
+      }
+    },
+    "Nigeria": {
+      "region": "Africa",
+      "domestic": {
+        "status": "not_available",
+        "tags": [],
+        "notes": "No local merchant entity"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard"
+        ],
+        "notes": "International card processing via global network"
+      }
+    },
+    "Tanzania": {
+      "region": "Africa",
+      "domestic": {
+        "status": "not_available",
+        "tags": [],
+        "notes": "No local merchant entity"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard"
+        ],
+        "notes": "International card processing via global network"
+      }
+    },
+    "Zambia": {
+      "region": "Africa",
+      "domestic": {
+        "status": "not_available",
+        "tags": [],
+        "notes": "No local merchant entity"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard"
+        ],
+        "notes": "International card processing via global network"
+      }
+    },
+    "Australia": {
+      "region": "Asia Pacific",
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Mastercard",
+          "Visa",
+          "JCB",
+          "JCBI",
+          "Cartes Bancaires",
+          "AMEX",
+          "Bancontact",
+          "UnionPay",
+          "eftpos Australia"
+        ],
+        "notes": "Full local acquiring incl. eftpos Australia"
       },
       "cross_border": {
         "status": "supported",
@@ -33,25 +142,92 @@
         "notes": "Global acquiring"
       }
     },
-    "Singapore": {
-      "region": "APAC",
+    "China": {
+      "region": "Asia Pacific",
       "domestic": {
+        "status": "not_available",
+        "tags": [],
+        "notes": "No local merchant entity"
+      },
+      "cross_border": {
         "status": "supported",
         "tags": [
           "Visa",
-          "Mastercard",
-          "Discover",
-          "Diners Club",
-          "JCB",
-          "UnionPay",
-          "eftpos Australia",
-          "Interac",
-          "Cartes Bancaires",
-          "Bancontact",
-          "Elo",
-          "PostFinance"
+          "Mastercard"
         ],
-        "notes": "Full rail integration"
+        "notes": "International card processing via global network"
+      }
+    },
+    "Hong Kong": {
+      "region": "Asia Pacific",
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Mastercard",
+          "Visa",
+          "JCB",
+          "Cartes Bancaires",
+          "AMEX",
+          "Bancontact",
+          "UnionPay"
+        ],
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard"
+        ],
+        "notes": "Global acquiring"
+      }
+    },
+    "Hong Kong SAR, China": {
+      "region": "Asia Pacific",
+      "domestic": {
+        "status": "not_available",
+        "tags": [],
+        "notes": "No local merchant entity"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard"
+        ],
+        "notes": "International card processing via global network"
+      }
+    },
+    "India": {
+      "region": "Asia Pacific",
+      "domestic": {
+        "status": "partial",
+        "tags": [
+          "Mastercard",
+          "Visa",
+          "AMEX"
+        ],
+        "notes": "Missing RuPay local scheme"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard"
+        ],
+        "notes": "Global acquiring"
+      }
+    },
+    "Indonesia": {
+      "region": "Asia Pacific",
+      "domestic": {
+        "status": "partial",
+        "tags": [
+          "Mastercard",
+          "Visa",
+          "AMEX"
+        ],
+        "notes": "Missing GPN local scheme"
       },
       "cross_border": {
         "status": "supported",
@@ -63,24 +239,20 @@
       }
     },
     "Japan": {
-      "region": "APAC",
+      "region": "Asia Pacific",
       "domestic": {
         "status": "supported",
         "tags": [
-          "Visa",
           "Mastercard",
-          "Discover",
+          "Visa",
           "Diners Club",
+          "Discover",
           "JCB",
-          "UnionPay",
-          "eftpos Australia",
-          "Interac",
           "Cartes Bancaires",
-          "Bancontact",
-          "Elo",
-          "PostFinance"
+          "AMEX",
+          "Bancontact"
         ],
-        "notes": "Full rail integration"
+        "notes": "Full local acquiring incl. JCB"
       },
       "cross_border": {
         "status": "supported",
@@ -91,25 +263,16 @@
         "notes": "Global acquiring"
       }
     },
-    "Brazil": {
-      "region": "LATAM",
+    "Malaysia": {
+      "region": "Asia Pacific",
       "domestic": {
         "status": "supported",
         "tags": [
-          "Visa",
           "Mastercard",
-          "Discover",
-          "Diners Club",
-          "JCB",
-          "UnionPay",
-          "eftpos Australia",
-          "Interac",
-          "Cartes Bancaires",
-          "Bancontact",
-          "Elo",
-          "PostFinance"
+          "Visa",
+          "UnionPay"
         ],
-        "notes": "Full rail integration"
+        "notes": "Full local acquiring"
       },
       "cross_border": {
         "status": "supported",
@@ -120,25 +283,21 @@
         "notes": "Global acquiring"
       }
     },
-    "Mexico": {
-      "region": "LATAM",
+    "New Zealand": {
+      "region": "Asia Pacific",
       "domestic": {
         "status": "supported",
         "tags": [
-          "Visa",
           "Mastercard",
-          "Discover",
-          "Diners Club",
+          "Visa",
           "JCB",
-          "UnionPay",
-          "eftpos Australia",
-          "Interac",
+          "JCBI",
           "Cartes Bancaires",
+          "AMEX",
           "Bancontact",
-          "Elo",
-          "PostFinance"
+          "UnionPay"
         ],
-        "notes": "Full rail integration"
+        "notes": "Full local acquiring"
       },
       "cross_border": {
         "status": "supported",
@@ -149,25 +308,35 @@
         "notes": "Global acquiring"
       }
     },
-    "Canada": {
-      "region": "North America",
+    "Philippines": {
+      "region": "Asia Pacific",
       "domestic": {
+        "status": "not_available",
+        "tags": [],
+        "notes": "No local merchant entity"
+      },
+      "cross_border": {
         "status": "supported",
         "tags": [
           "Visa",
-          "Mastercard",
-          "Discover",
-          "Diners Club",
-          "JCB",
-          "UnionPay",
-          "eftpos Australia",
-          "Interac",
-          "Cartes Bancaires",
-          "Bancontact",
-          "Elo",
-          "PostFinance"
+          "Mastercard"
         ],
-        "notes": "Full rail integration"
+        "notes": "International card processing via global network"
+      }
+    },
+    "Singapore": {
+      "region": "Asia Pacific",
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Mastercard",
+          "Visa",
+          "JCB",
+          "AMEX",
+          "Bancontact",
+          "UnionPay"
+        ],
+        "notes": "Full local acquiring"
       },
       "cross_border": {
         "status": "supported",
@@ -178,25 +347,16 @@
         "notes": "Global acquiring"
       }
     },
-    "United States": {
-      "region": "North America",
+    "South Korea": {
+      "region": "Asia Pacific",
       "domestic": {
-        "status": "supported",
+        "status": "partial",
         "tags": [
-          "Visa",
           "Mastercard",
-          "Discover",
-          "Diners Club",
-          "JCB",
-          "UnionPay",
-          "eftpos Australia",
-          "Interac",
-          "Cartes Bancaires",
-          "Bancontact",
-          "Elo",
-          "PostFinance"
+          "Visa",
+          "AMEX"
         ],
-        "notes": "Full rail integration"
+        "notes": "Missing Korean cards local scheme"
       },
       "cross_border": {
         "status": "supported",
@@ -207,25 +367,614 @@
         "notes": "Global acquiring"
       }
     },
-    "United Kingdom": {
+    "Thailand": {
+      "region": "Asia Pacific",
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Mastercard",
+          "Visa"
+        ],
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard"
+        ],
+        "notes": "Global acquiring"
+      }
+    },
+    "Vietnam": {
+      "region": "Asia Pacific",
+      "domestic": {
+        "status": "not_available",
+        "tags": [],
+        "notes": "No local merchant entity"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard"
+        ],
+        "notes": "International card processing via global network"
+      }
+    },
+    "Andorra": {
+      "region": "Europe",
+      "domestic": {
+        "status": "not_available",
+        "tags": [],
+        "notes": "No local merchant entity"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard"
+        ],
+        "notes": "International card processing via global network"
+      }
+    },
+    "Austria": {
       "region": "Europe",
       "domestic": {
         "status": "supported",
         "tags": [
-          "Visa",
           "Mastercard",
-          "Discover",
+          "Visa",
           "Diners Club",
+          "Discover",
           "JCB",
-          "UnionPay",
-          "eftpos Australia",
-          "Interac",
           "Cartes Bancaires",
+          "AMEX",
           "Bancontact",
-          "Elo",
-          "PostFinance"
+          "UnionPay"
         ],
-        "notes": "Full rail integration"
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard"
+        ],
+        "notes": "Global acquiring"
+      }
+    },
+    "Belgium": {
+      "region": "Europe",
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Mastercard",
+          "Visa",
+          "Diners Club",
+          "Discover",
+          "JCB",
+          "Cartes Bancaires",
+          "AMEX",
+          "Bancontact",
+          "UnionPay"
+        ],
+        "notes": "Full local acquiring incl. Bancontact"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard"
+        ],
+        "notes": "Global acquiring"
+      }
+    },
+    "Bulgaria": {
+      "region": "Europe",
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Mastercard",
+          "Visa",
+          "JCB",
+          "Cartes Bancaires",
+          "AMEX",
+          "Bancontact",
+          "UnionPay"
+        ],
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard"
+        ],
+        "notes": "Global acquiring"
+      }
+    },
+    "Croatia": {
+      "region": "Europe",
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Mastercard",
+          "Visa",
+          "JCB",
+          "Cartes Bancaires",
+          "AMEX",
+          "Bancontact"
+        ],
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard"
+        ],
+        "notes": "Global acquiring"
+      }
+    },
+    "Cyprus": {
+      "region": "Europe",
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Mastercard",
+          "Visa",
+          "Diners Club",
+          "Discover",
+          "JCB",
+          "Cartes Bancaires",
+          "AMEX",
+          "Bancontact",
+          "UnionPay"
+        ],
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard"
+        ],
+        "notes": "Global acquiring"
+      }
+    },
+    "Czech Republic": {
+      "region": "Europe",
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Mastercard",
+          "Visa",
+          "JCB",
+          "Cartes Bancaires",
+          "AMEX",
+          "Bancontact",
+          "UnionPay"
+        ],
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard"
+        ],
+        "notes": "Global acquiring"
+      }
+    },
+    "Denmark": {
+      "region": "Europe",
+      "domestic": {
+        "status": "partial",
+        "tags": [
+          "Mastercard",
+          "Visa",
+          "Diners Club",
+          "Discover",
+          "JCB",
+          "Cartes Bancaires",
+          "AMEX",
+          "Bancontact",
+          "UnionPay"
+        ],
+        "notes": "Missing Dankort local scheme"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard"
+        ],
+        "notes": "Global acquiring"
+      }
+    },
+    "Estonia": {
+      "region": "Europe",
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Mastercard",
+          "Visa",
+          "Diners Club",
+          "Discover",
+          "JCB",
+          "Cartes Bancaires",
+          "AMEX",
+          "Bancontact",
+          "UnionPay"
+        ],
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard"
+        ],
+        "notes": "Global acquiring"
+      }
+    },
+    "Finland": {
+      "region": "Europe",
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Mastercard",
+          "Visa",
+          "Diners Club",
+          "Discover",
+          "JCB",
+          "Cartes Bancaires",
+          "AMEX",
+          "Bancontact",
+          "UnionPay"
+        ],
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard"
+        ],
+        "notes": "Global acquiring"
+      }
+    },
+    "France": {
+      "region": "Europe",
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Mastercard",
+          "Visa",
+          "Diners Club",
+          "Discover",
+          "JCB",
+          "Cartes Bancaires",
+          "AMEX",
+          "Bancontact",
+          "UnionPay"
+        ],
+        "notes": "Full local acquiring incl. Cartes Bancaires"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard"
+        ],
+        "notes": "Global acquiring"
+      }
+    },
+    "Germany": {
+      "region": "Europe",
+      "domestic": {
+        "status": "partial",
+        "tags": [
+          "Mastercard",
+          "Visa",
+          "Diners Club",
+          "Discover",
+          "JCB",
+          "Cartes Bancaires",
+          "AMEX",
+          "Bancontact",
+          "UnionPay"
+        ],
+        "notes": "Missing girocard local scheme"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard"
+        ],
+        "notes": "Global acquiring"
+      }
+    },
+    "Gibraltar": {
+      "region": "Europe",
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Mastercard",
+          "Visa",
+          "JCB",
+          "Cartes Bancaires",
+          "AMEX",
+          "Bancontact"
+        ],
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard"
+        ],
+        "notes": "Global acquiring"
+      }
+    },
+    "Greece": {
+      "region": "Europe",
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Mastercard",
+          "Visa",
+          "Diners Club",
+          "Discover",
+          "JCB",
+          "Cartes Bancaires",
+          "AMEX",
+          "Bancontact",
+          "UnionPay"
+        ],
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard"
+        ],
+        "notes": "Global acquiring"
+      }
+    },
+    "Holy See (Vatican City)": {
+      "region": "Europe",
+      "domestic": {
+        "status": "not_available",
+        "tags": [],
+        "notes": "No local merchant entity"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard"
+        ],
+        "notes": "International card processing via global network"
+      }
+    },
+    "Hungary": {
+      "region": "Europe",
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Mastercard",
+          "Visa",
+          "JCB",
+          "Cartes Bancaires",
+          "AMEX",
+          "Bancontact",
+          "UnionPay"
+        ],
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard"
+        ],
+        "notes": "Global acquiring"
+      }
+    },
+    "Iceland": {
+      "region": "Europe",
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Mastercard",
+          "Visa",
+          "AMEX"
+        ],
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard"
+        ],
+        "notes": "Global acquiring"
+      }
+    },
+    "Ireland": {
+      "region": "Europe",
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Mastercard",
+          "Visa",
+          "Diners Club",
+          "Discover",
+          "JCB",
+          "Cartes Bancaires",
+          "AMEX",
+          "Bancontact",
+          "UnionPay"
+        ],
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard"
+        ],
+        "notes": "Global acquiring"
+      }
+    },
+    "Italy": {
+      "region": "Europe",
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Mastercard",
+          "Visa",
+          "Diners Club",
+          "Discover",
+          "JCB",
+          "Cartes Bancaires",
+          "AMEX",
+          "Bancontact",
+          "UnionPay"
+        ],
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard"
+        ],
+        "notes": "Global acquiring"
+      }
+    },
+    "Latvia": {
+      "region": "Europe",
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Mastercard",
+          "Visa",
+          "Diners Club",
+          "Discover",
+          "JCB",
+          "Cartes Bancaires",
+          "AMEX",
+          "Bancontact",
+          "UnionPay"
+        ],
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard"
+        ],
+        "notes": "Global acquiring"
+      }
+    },
+    "Liechtenstein": {
+      "region": "Europe",
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Mastercard",
+          "Visa",
+          "JCB",
+          "Cartes Bancaires",
+          "AMEX",
+          "Bancontact"
+        ],
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard"
+        ],
+        "notes": "Global acquiring"
+      }
+    },
+    "Lithuania": {
+      "region": "Europe",
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Mastercard",
+          "Visa",
+          "Diners Club",
+          "Discover",
+          "JCB",
+          "Cartes Bancaires",
+          "AMEX",
+          "Bancontact",
+          "UnionPay"
+        ],
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard"
+        ],
+        "notes": "Global acquiring"
+      }
+    },
+    "Luxembourg": {
+      "region": "Europe",
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Mastercard",
+          "Visa",
+          "Diners Club",
+          "Discover",
+          "JCB",
+          "Cartes Bancaires",
+          "AMEX",
+          "Bancontact",
+          "UnionPay"
+        ],
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard"
+        ],
+        "notes": "Global acquiring"
+      }
+    },
+    "Malta": {
+      "region": "Europe",
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Mastercard",
+          "Visa",
+          "Diners Club",
+          "Discover",
+          "JCB",
+          "Cartes Bancaires",
+          "AMEX",
+          "Bancontact",
+          "UnionPay"
+        ],
+        "notes": "Full local acquiring"
       },
       "cross_border": {
         "status": "supported",
@@ -241,20 +990,17 @@
       "domestic": {
         "status": "supported",
         "tags": [
-          "Visa",
           "Mastercard",
-          "Discover",
+          "Visa",
           "Diners Club",
+          "Discover",
           "JCB",
-          "UnionPay",
-          "eftpos Australia",
-          "Interac",
           "Cartes Bancaires",
+          "AMEX",
           "Bancontact",
-          "Elo",
-          "PostFinance"
+          "UnionPay"
         ],
-        "notes": "Full rail integration"
+        "notes": "Full local acquiring"
       },
       "cross_border": {
         "status": "supported",
@@ -265,25 +1011,558 @@
         "notes": "Global acquiring"
       }
     },
-    "Germany": {
+    "Norway": {
       "region": "Europe",
       "domestic": {
         "status": "supported",
         "tags": [
-          "Visa",
           "Mastercard",
-          "Discover",
+          "Visa",
           "Diners Club",
+          "Discover",
           "JCB",
-          "UnionPay",
-          "eftpos Australia",
-          "Interac",
           "Cartes Bancaires",
+          "AMEX",
           "Bancontact",
-          "Elo",
-          "PostFinance"
+          "UnionPay"
         ],
-        "notes": "Full rail integration"
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard"
+        ],
+        "notes": "Global acquiring"
+      }
+    },
+    "Poland": {
+      "region": "Europe",
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Mastercard",
+          "Visa",
+          "Diners Club",
+          "Discover",
+          "JCB",
+          "Cartes Bancaires",
+          "AMEX",
+          "Bancontact",
+          "UnionPay"
+        ],
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard"
+        ],
+        "notes": "Global acquiring"
+      }
+    },
+    "Portugal": {
+      "region": "Europe",
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Mastercard",
+          "Visa",
+          "Diners Club",
+          "Discover",
+          "JCB",
+          "Cartes Bancaires",
+          "AMEX",
+          "Bancontact",
+          "UnionPay"
+        ],
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard"
+        ],
+        "notes": "Global acquiring"
+      }
+    },
+    "Romania": {
+      "region": "Europe",
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Mastercard",
+          "Visa",
+          "JCB",
+          "Cartes Bancaires",
+          "AMEX",
+          "Bancontact",
+          "UnionPay"
+        ],
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard"
+        ],
+        "notes": "Global acquiring"
+      }
+    },
+    "San Marino": {
+      "region": "Europe",
+      "domestic": {
+        "status": "not_available",
+        "tags": [],
+        "notes": "No local merchant entity"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard"
+        ],
+        "notes": "International card processing via global network"
+      }
+    },
+    "Slovakia": {
+      "region": "Europe",
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Mastercard",
+          "Visa",
+          "Diners Club",
+          "Discover",
+          "JCB",
+          "Cartes Bancaires",
+          "AMEX",
+          "Bancontact",
+          "UnionPay"
+        ],
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard"
+        ],
+        "notes": "Global acquiring"
+      }
+    },
+    "Slovenia": {
+      "region": "Europe",
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Mastercard",
+          "Visa",
+          "Diners Club",
+          "Discover",
+          "JCB",
+          "Cartes Bancaires",
+          "AMEX",
+          "Bancontact",
+          "UnionPay"
+        ],
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard"
+        ],
+        "notes": "Global acquiring"
+      }
+    },
+    "Spain": {
+      "region": "Europe",
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Mastercard",
+          "Visa",
+          "Diners Club",
+          "Discover",
+          "JCB",
+          "Cartes Bancaires",
+          "AMEX",
+          "Bancontact",
+          "UnionPay"
+        ],
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard"
+        ],
+        "notes": "Global acquiring"
+      }
+    },
+    "Sweden": {
+      "region": "Europe",
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Mastercard",
+          "Visa",
+          "Diners Club",
+          "Discover",
+          "JCB",
+          "Cartes Bancaires",
+          "AMEX",
+          "Bancontact",
+          "UnionPay"
+        ],
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard"
+        ],
+        "notes": "Global acquiring"
+      }
+    },
+    "Switzerland": {
+      "region": "Europe",
+      "domestic": {
+        "status": "partial",
+        "tags": [
+          "Mastercard",
+          "Visa",
+          "Diners Club",
+          "Discover",
+          "JCB",
+          "Cartes Bancaires",
+          "AMEX",
+          "Bancontact",
+          "UnionPay"
+        ],
+        "notes": "Missing PostFinance local scheme"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard"
+        ],
+        "notes": "Global acquiring"
+      }
+    },
+    "Turkey": {
+      "region": "Europe",
+      "domestic": {
+        "status": "not_available",
+        "tags": [],
+        "notes": "No local merchant entity"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard"
+        ],
+        "notes": "International card processing via global network"
+      }
+    },
+    "Ukraine": {
+      "region": "Europe",
+      "domestic": {
+        "status": "not_available",
+        "tags": [],
+        "notes": "No local merchant entity"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard"
+        ],
+        "notes": "International card processing via global network"
+      }
+    },
+    "United Kingdom": {
+      "region": "Europe",
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Mastercard",
+          "Visa",
+          "Diners Club",
+          "Discover",
+          "JCB",
+          "Cartes Bancaires",
+          "AMEX",
+          "Bancontact",
+          "UnionPay"
+        ],
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard"
+        ],
+        "notes": "Global acquiring"
+      }
+    },
+    "Argentina": {
+      "region": "Latin America",
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Mastercard",
+          "Visa"
+        ],
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard"
+        ],
+        "notes": "Global acquiring"
+      }
+    },
+    "Brazil": {
+      "region": "Latin America",
+      "domestic": {
+        "status": "partial",
+        "tags": [
+          "Mastercard",
+          "Visa"
+        ],
+        "notes": "Missing Elo, Hipercard local scheme"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard"
+        ],
+        "notes": "Global acquiring"
+      }
+    },
+    "Chile": {
+      "region": "Latin America",
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Mastercard",
+          "Visa",
+          "AMEX"
+        ],
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard"
+        ],
+        "notes": "Global acquiring"
+      }
+    },
+    "Mexico": {
+      "region": "Latin America",
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "MSI (MX)",
+          "Mastercard",
+          "Visa",
+          "Cartes Bancaires",
+          "AMEX",
+          "Bancontact"
+        ],
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard"
+        ],
+        "notes": "Global acquiring"
+      }
+    },
+    "Saint Martin (French part)": {
+      "region": "Latin America",
+      "domestic": {
+        "status": "not_available",
+        "tags": [],
+        "notes": "No local merchant entity"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard"
+        ],
+        "notes": "International card processing via global network"
+      }
+    },
+    "Bahrain": {
+      "region": "Middle East & North Africa",
+      "domestic": {
+        "status": "not_available",
+        "tags": [],
+        "notes": "No local merchant entity"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard"
+        ],
+        "notes": "International card processing via global network"
+      }
+    },
+    "Israel": {
+      "region": "Middle East & North Africa",
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Mastercard",
+          "Visa",
+          "AMEX"
+        ],
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard"
+        ],
+        "notes": "Global acquiring"
+      }
+    },
+    "Kuwait": {
+      "region": "Middle East & North Africa",
+      "domestic": {
+        "status": "not_available",
+        "tags": [],
+        "notes": "No local merchant entity"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard"
+        ],
+        "notes": "International card processing via global network"
+      }
+    },
+    "Oman": {
+      "region": "Middle East & North Africa",
+      "domestic": {
+        "status": "not_available",
+        "tags": [],
+        "notes": "No local merchant entity"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard"
+        ],
+        "notes": "International card processing via global network"
+      }
+    },
+    "Qatar": {
+      "region": "Middle East & North Africa",
+      "domestic": {
+        "status": "not_available",
+        "tags": [],
+        "notes": "No local merchant entity"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard"
+        ],
+        "notes": "International card processing via global network"
+      }
+    },
+    "United Arab Emirates": {
+      "region": "Middle East & North Africa",
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Mastercard",
+          "Visa"
+        ],
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard"
+        ],
+        "notes": "Global acquiring"
+      }
+    },
+    "Canada": {
+      "region": "North America",
+      "domestic": {
+        "status": "partial",
+        "tags": [
+          "Mastercard",
+          "Visa",
+          "Diners Club",
+          "Discover",
+          "JCB",
+          "JCBI",
+          "Cartes Bancaires",
+          "AMEX",
+          "Bancontact",
+          "UnionPay"
+        ],
+        "notes": "Interac requires separate external agreement"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard"
+        ],
+        "notes": "Global acquiring"
+      }
+    },
+    "United States": {
+      "region": "North America",
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Mastercard",
+          "Visa",
+          "Diners Club",
+          "Discover",
+          "JCB",
+          "JCBI",
+          "Cartes Bancaires",
+          "AMEX",
+          "Bancontact",
+          "UnionPay",
+          "Korean cards",
+          "Nigerian cards"
+        ],
+        "notes": "Full local acquiring"
       },
       "cross_border": {
         "status": "supported",

@@ -1,86 +1,624 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Card Rail Intelligence Extractor v12</title>
+    <title>Card Rail Intelligence Extractor</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .rail-pill {
+            display: inline-flex; align-items: center;
+            padding: 2px 8px; border-radius: 9999px;
+            font-size: 9px; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.05em; border: 1px solid; white-space: nowrap;
+        }
+        .pill-native   { background: #f0fdf4; color: #166534; border-color: #bbf7d0; }
+        .pill-external { background: #fefce8; color: #854d0e; border-color: #fef08a; }
+        .region-header td {
+            background-color: #f1f5f9; padding: 8px 16px;
+            font-size: 9px; font-weight: 900; text-transform: uppercase;
+            letter-spacing: 0.1em; color: #64748b;
+        }
+        tr.row-supported { background: #f0fdf4; }
+        tr.row-partial   { background: #fffbeb; }
+        tr.row-not_available { background: #fff1f2; }
+        tr:hover { filter: brightness(0.97); }
+    </style>
 </head>
-<body class="bg-slate-50 p-10 font-sans">
-    <div class="max-w-4xl mx-auto bg-white p-8 rounded-2xl shadow-xl border border-slate-200">
-        <h1 class="text-2xl font-bold text-slate-900 mb-2">Card Rail Extractor</h1>
-        <p class="text-slate-500 mb-6">Extracting local card schemes and global network integrations.</p>
-        
-        <textarea id="input" class="w-full h-64 p-4 border-2 border-slate-100 rounded-xl font-mono text-xs focus:border-indigo-500 mb-6" placeholder="Paste Postman/HTML payload here..."></textarea>
-        
-        <div class="grid grid-cols-3 gap-4">
-            <button onclick="process('Stripe')" class="bg-[#635bff] text-white py-4 rounded-lg font-bold hover:opacity-90">Analyze Stripe Rails</button>
-            <button onclick="process('Adyen')" class="bg-[#00d16a] text-white py-4 rounded-lg font-bold hover:opacity-90">Analyze Adyen Rails</button>
-            <button onclick="process('WorldPay')" class="bg-red-600 text-white py-4 rounded-lg font-bold hover:opacity-90">Analyze WorldPay Rails</button>
+<body class="bg-[#F8FAFC] p-6 font-sans text-slate-800">
+<div class="max-w-[1400px] mx-auto">
+
+    <!-- Header -->
+    <header class="flex items-center justify-between mb-8">
+        <div>
+            <h1 class="text-2xl font-black tracking-tighter text-slate-900 uppercase italic">Card Rail Extractor</h1>
+            <p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest mt-1">Intelligence Normalization Engine · Card Schemes Only</p>
         </div>
-        <div id="status" class="mt-4 p-4 rounded-lg hidden text-sm font-medium text-emerald-700 bg-emerald-50"></div>
+        <a href="index.html" class="text-[10px] text-indigo-600 hover:text-indigo-800 font-black uppercase tracking-widest flex items-center gap-1">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+            </svg>
+            Back to Dashboard
+        </a>
+    </header>
+
+    <!-- Step 1: Input -->
+    <div class="bg-white rounded-3xl p-8 border border-slate-200 shadow-xl mb-6">
+        <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4">Step 1 — Select Competitor &amp; Paste Raw HTML</p>
+
+        <div class="flex gap-3 mb-6">
+            <button onclick="setComp('Stripe')"   id="btn-Stripe"   class="comp-btn active-comp px-6 py-3 rounded-xl text-[11px] font-black uppercase tracking-wider transition-all bg-[#635bff] text-white shadow-sm">Stripe</button>
+            <button onclick="setComp('Adyen')"    id="btn-Adyen"    class="comp-btn px-6 py-3 rounded-xl text-[11px] font-black uppercase tracking-wider transition-all bg-slate-100 text-slate-500 hover:bg-slate-200">Adyen</button>
+            <button onclick="setComp('WorldPay')" id="btn-WorldPay" class="comp-btn px-6 py-3 rounded-xl text-[11px] font-black uppercase tracking-wider transition-all bg-slate-100 text-slate-500 hover:bg-slate-200">WorldPay</button>
+            <button onclick="setComp('CKO')"      id="btn-CKO"      class="comp-btn px-6 py-3 rounded-xl text-[11px] font-black uppercase tracking-wider transition-all bg-slate-100 text-slate-500 hover:bg-slate-200">CKO</button>
+        </div>
+
+        <textarea id="raw-input" rows="12"
+            class="w-full p-4 border-2 border-slate-100 rounded-xl font-mono text-xs focus:border-indigo-400 focus:outline-none resize-none"
+            placeholder="Paste raw HTML from the competitor's payment methods page (e.g. stripe.com/gb/payments/payment-methods)…"></textarea>
+
+        <div class="flex items-center gap-4 mt-4">
+            <button onclick="extract()"
+                class="px-8 py-3 bg-slate-900 text-white rounded-xl text-[11px] font-black uppercase tracking-wider hover:bg-slate-700 transition-all">
+                Extract Card Rails →
+            </button>
+            <p class="text-[10px] text-slate-400">Results preview below before you download anything.</p>
+        </div>
     </div>
 
-    <script>
-        const MASTER_CONFIG = {
-            "Australia": "APAC", "Singapore": "APAC", "Japan": "APAC",
-            "Brazil": "LATAM", "Mexico": "LATAM",
-            "Canada": "North America", "United States": "North America",
-            "United Kingdom": "Europe", "Netherlands": "Europe", "Germany": "Europe"
-        };
+    <!-- Step 2: Preview (hidden until extraction runs) -->
+    <div id="preview-section" class="hidden">
 
-        // Master Card Rail Definitions
-        const CARD_RAILS = {
-            "Global": ["Visa", "Mastercard", "AMEX", "Discover", "Diners Club", "JCB", "UnionPay"],
-            "Local": ["eftpos Australia", "Interac", "Cartes Bancaires", "Bancontact", "Elo", "Hipercard", "Dankort", "girocard", "V Pay", "PostFinance"]
-        };
+        <!-- Format detection banner -->
+        <div id="format-banner" class="rounded-2xl px-6 py-4 mb-6 text-sm font-semibold flex items-center gap-3"></div>
 
-        function process(comp) {
-            const raw = document.getElementById('input').value;
-            const results = {};
-            const date = new Date().toISOString().split('T')[0];
+        <!-- Stats bar -->
+        <div class="grid grid-cols-4 gap-4 mb-6">
+            <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm text-center">
+                <div id="stat-total"     class="text-3xl font-black text-slate-900">—</div>
+                <div class="text-[9px] font-black text-slate-400 uppercase tracking-widest mt-1">Markets</div>
+            </div>
+            <div class="bg-emerald-50 rounded-2xl p-5 border border-emerald-100 shadow-sm text-center">
+                <div id="stat-supported" class="text-3xl font-black text-emerald-600">—</div>
+                <div class="text-[9px] font-black text-emerald-400 uppercase tracking-widest mt-1">Supported</div>
+            </div>
+            <div class="bg-amber-50 rounded-2xl p-5 border border-amber-100 shadow-sm text-center">
+                <div id="stat-partial"   class="text-3xl font-black text-amber-500">—</div>
+                <div class="text-[9px] font-black text-amber-400 uppercase tracking-widest mt-1">Partial</div>
+            </div>
+            <div class="bg-rose-50 rounded-2xl p-5 border border-rose-100 shadow-sm text-center">
+                <div id="stat-na"        class="text-3xl font-black text-rose-400">—</div>
+                <div class="text-[9px] font-black text-rose-400 uppercase tracking-widest mt-1">Not Available</div>
+            </div>
+        </div>
 
-            Object.keys(MASTER_CONFIG).forEach(country => {
-                let tags = [];
-                
-                // Identify integrated rails by scanning payload strings
-                [...CARD_RAILS.Global, ...CARD_RAILS.Local].forEach(rail => {
-                    if (raw.toLowerCase().includes(rail.toLowerCase())) {
-                        tags.push(rail);
-                    }
-                });
+        <!-- Preview table -->
+        <div class="bg-white rounded-3xl border border-slate-200 shadow-xl overflow-hidden mb-6">
+            <div class="overflow-x-auto max-h-[650px]">
+                <table class="min-w-full border-collapse text-sm">
+                    <thead>
+                        <tr class="sticky top-0 bg-slate-50 z-10 shadow-sm">
+                            <th class="px-5 py-4 text-left text-[10px] font-black text-slate-400 uppercase tracking-widest w-48">Market</th>
+                            <th class="px-4 py-4 text-left text-[10px] font-black text-slate-400 uppercase tracking-widest w-32">Status</th>
+                            <th class="px-5 py-4 text-left text-[10px] font-black text-slate-400 uppercase tracking-widest">Native Card Rails</th>
+                            <th class="px-5 py-4 text-left text-[10px] font-black text-slate-400 uppercase tracking-widest">External / Missing</th>
+                            <th class="px-5 py-4 text-left text-[10px] font-black text-slate-400 uppercase tracking-widest">Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody id="preview-tbody"></tbody>
+                </table>
+            </div>
+        </div>
 
-                // Status Logic: Partial if missing a core local scheme for that market
-                let status = "supported";
-                if (country === "Australia" && !tags.includes("eftpos Australia")) status = "partial";
-                if (country === "Canada" && !tags.includes("Interac")) status = "partial";
-                if (country === "Brazil" && !tags.includes("Elo")) status = "partial";
+        <!-- Step 3: Download -->
+        <div class="bg-white rounded-3xl p-8 border border-slate-200 shadow-xl">
+            <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4">Step 3 — Download &amp; Replace Data File</p>
+            <p class="text-sm text-slate-500 mb-6">Review the table above, then download the JSON. Replace the matching file in <code class="bg-slate-100 px-1 rounded text-xs">/data/</code> in your repo.</p>
+            <button onclick="downloadJSON()"
+                class="px-8 py-4 bg-indigo-600 text-white rounded-xl text-[11px] font-black uppercase tracking-wider hover:bg-indigo-700 transition-all shadow-md">
+                Download <span id="dl-filename">stripe.json</span>
+            </button>
+        </div>
+    </div>
 
-                results[country] = {
-                    "region": MASTER_CONFIG[country],
-                    "domestic": { 
-                        "status": status, 
-                        "tags": tags.length ? tags : ["Standard Cards"], 
-                        "notes": status === "partial" ? "Missing primary local rail" : "Full rail integration" 
-                    },
-                    "cross_border": { 
-                        "status": "supported", 
-                        "tags": ["Visa", "Mastercard"], 
-                        "notes": "Global acquiring" 
-                    }
-                };
-            });
+</div>
 
-            const finalObj = { "Metadata": { "Competitor": comp, "LastUpdated": date }, "Countries": results };
-            const blob = new Blob([JSON.stringify(finalObj, null, 2)], {type: "application/json"});
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `${comp.toLowerCase()}.json`;
-            a.click();
-            
-            const s = document.getElementById('status');
-            s.innerText = `Successfully mapped card rails for ${comp}`;
-            s.classList.remove('hidden');
+<script>
+// ─── MASTER CONFIG (keep in sync with index.html) ────────────────────────────
+const MASTER_CONFIG = {
+    "Egypt": "Middle East & North Africa", "Kenya": "Africa", "Morocco": "Middle East & North Africa",
+    "Mozambique": "Africa", "Nigeria": "Africa", "Tanzania": "Africa", "Zambia": "Africa",
+    "Australia": "Asia Pacific", "China": "Asia Pacific", "Hong Kong": "Asia Pacific",
+    "Hong Kong SAR, China": "Asia Pacific", "India": "Asia Pacific", "Indonesia": "Asia Pacific",
+    "Japan": "Asia Pacific", "Malaysia": "Asia Pacific", "New Zealand": "Asia Pacific",
+    "Philippines": "Asia Pacific", "Singapore": "Asia Pacific", "South Korea": "Asia Pacific",
+    "Thailand": "Asia Pacific", "Vietnam": "Asia Pacific",
+    "Andorra": "Europe", "Austria": "Europe", "Belgium": "Europe", "Bulgaria": "Europe",
+    "Croatia": "Europe", "Cyprus": "Europe", "Czech Republic": "Europe", "Denmark": "Europe",
+    "Estonia": "Europe", "Finland": "Europe", "France": "Europe", "Germany": "Europe",
+    "Gibraltar": "Europe", "Greece": "Europe", "Holy See (Vatican City)": "Europe",
+    "Hungary": "Europe", "Iceland": "Europe", "Ireland": "Europe", "Italy": "Europe",
+    "Latvia": "Europe", "Liechtenstein": "Europe", "Lithuania": "Europe", "Luxembourg": "Europe",
+    "Malta": "Europe", "Netherlands": "Europe", "Norway": "Europe", "Poland": "Europe",
+    "Portugal": "Europe", "Romania": "Europe", "San Marino": "Europe", "Slovakia": "Europe",
+    "Slovenia": "Europe", "Spain": "Europe", "Sweden": "Europe", "Switzerland": "Europe",
+    "Turkey": "Europe", "Ukraine": "Europe", "United Kingdom": "Europe",
+    "Argentina": "Latin America", "Brazil": "Latin America", "Chile": "Latin America",
+    "Mexico": "Latin America", "Saint Martin (French part)": "Latin America",
+    "Bahrain": "Middle East & North Africa", "Israel": "Middle East & North Africa",
+    "Kuwait": "Middle East & North Africa", "Oman": "Middle East & North Africa",
+    "Qatar": "Middle East & North Africa", "United Arab Emirates": "Middle East & North Africa",
+    "Canada": "North America", "United States": "North America"
+};
+
+// ─── CARD SCHEME RULES ───────────────────────────────────────────────────────
+
+// Types in Stripe's JSON that are card schemes
+const CARD_TYPES = new Set(['Cards']);
+
+// Names that are card-issued but typed differently in Stripe's taxonomy
+const ALSO_CARD_SCHEMES = new Set(['Bancontact']);
+
+// Canonical display names (maps Stripe names → our tag names)
+const DISPLAY_NAME = {
+    "American Express": "AMEX",
+    "China UnionPay":   "UnionPay",
+    "Meses Sin Intereses": "MSI (MX)"
+};
+
+// Dominant local schemes required per market (absence → partial)
+const REQUIRED_LOCAL = {
+    "Australia":   ["eftpos Australia"],
+    "Canada":      ["Interac"],
+    "France":      ["Cartes Bancaires"],
+    "Belgium":     ["Bancontact"],
+    "Germany":     ["girocard"],
+    "Denmark":     ["Dankort"],
+    "Switzerland": ["PostFinance"],
+    "Turkey":      ["Troy"],
+    "India":       ["RuPay"],
+    "Brazil":      ["Elo", "Hipercard"],
+    "South Korea": ["Korean cards"],
+    "Indonesia":   ["GPN"],
+    "Vietnam":     ["Napas"],
+    "Japan":       ["JCB"],
+    "Nigeria":     ["Verve"],
+    "Kuwait":      ["KNET"],
+    "Qatar":       ["NAPS"],
+    "Bahrain":     ["Benefit"]
+};
+
+// Stripe country names that differ from our MASTER_CONFIG keys
+const NORMALIZE_COUNTRY = {
+    "Hong Kong SAR":      "Hong Kong SAR, China",
+    "Republic of Korea":  "South Korea",
+    "Korea":              "South Korea",
+    "Viet Nam":           "Vietnam",
+    "Czech Republic (Czechia)": "Czech Republic"
+};
+
+// ─── STATE ────────────────────────────────────────────────────────────────────
+let currentComp = 'Stripe';
+let extractedResults = null;
+
+// ─── UI HELPERS ──────────────────────────────────────────────────────────────
+function setComp(name) {
+    currentComp = name;
+    const colors = { Stripe: 'bg-[#635bff]', Adyen: 'bg-[#00d16a]', WorldPay: 'bg-red-600', CKO: 'bg-[#0050FF]' };
+    document.querySelectorAll('.comp-btn').forEach(b => {
+        b.className = 'comp-btn px-6 py-3 rounded-xl text-[11px] font-black uppercase tracking-wider transition-all bg-slate-100 text-slate-500 hover:bg-slate-200';
+    });
+    const active = document.getElementById('btn-' + name);
+    active.className = `comp-btn px-6 py-3 rounded-xl text-[11px] font-black uppercase tracking-wider transition-all ${colors[name]} text-white shadow-sm`;
+    document.getElementById('dl-filename').textContent = name.toLowerCase() + '.json';
+}
+
+function tag(name, type) {
+    const cls = type === 'external' ? 'pill-external' : 'pill-native';
+    return `<span class="rail-pill ${cls}">${name}</span>`;
+}
+
+// ─── STRIPE PARSER ────────────────────────────────────────────────────────────
+function parseStripeHTML(html) {
+    // Find the embedded paymentMethodJSONData script tag
+    const match = html.match(/id="paymentMethodJSONData"[^>]*>([\s\S]*?)<\/script>/);
+    if (!match) return null;
+
+    let rawJSON;
+    try {
+        rawJSON = JSON.parse(match[1].trim());
+    } catch (e) {
+        return null;
+    }
+
+    // Filter to card schemes only
+    const cardSchemes = rawJSON.filter(item =>
+        CARD_TYPES.has(item.type?.title) || ALSO_CARD_SCHEMES.has(item.name)
+    );
+
+    // Build country → { native: [], external: [] } map
+    const countryMap = {};
+    cardSchemes.forEach(scheme => {
+        const isExternal = scheme.external === true;
+        const displayName = DISPLAY_NAME[scheme.name] || scheme.name;
+        (scheme.countries || []).forEach(c => {
+            const raw = c.name || c.countryCode || '';
+            const name = NORMALIZE_COUNTRY[raw] || raw;
+            if (!countryMap[name]) countryMap[name] = { native: [], external: [] };
+            if (isExternal) {
+                countryMap[name].external.push(displayName);
+            } else {
+                countryMap[name].native.push(displayName);
+            }
+        });
+    });
+
+    return countryMap;
+}
+
+// ─── ADYEN PARSER ─────────────────────────────────────────────────────────────
+function parseAdyenHTML(html) {
+    // Adyen's payment methods page is a Nuxt SSR app — data is in __NUXT_DATA__
+    const match = html.match(/id="__NUXT_DATA__"[^>]*>([\s\S]*?)<\/script>/);
+    if (!match) return null;
+
+    let D;
+    try { D = JSON.parse(match[1].trim()); } catch(e) { return null; }
+    if (!Array.isArray(D)) return null;
+
+    // Resolve integer indices (Nuxt serialises the reactive store as a flat array)
+    function r(v, depth = 0) {
+        if (typeof v !== 'number' || depth > 8) return v;
+        const val = D[v];
+        if (val === undefined || val === null) return val;
+        if (Array.isArray(val) && val.length === 2 && typeof val[0] === 'string' &&
+            ['Reactive','ShallowReactive','ShallowRef'].includes(val[0])) {
+            return r(val[1], depth + 1);
         }
-    </script>
+        if (!Array.isArray(val) && val && typeof val === 'object') {
+            const out = {};
+            for (const [k, vv] of Object.entries(val)) out[k] = r(vv, depth + 1);
+            return out;
+        }
+        if (Array.isArray(val)) return val.map(vv => r(vv, depth + 1));
+        return val;
+    }
+
+    // Navigate: root → state (Reactive) → reactive dict → $sglobalData → { en: idx } → en locale
+    // Use direct index access (not r()) for navigation — r() resolves recursively and would
+    // turn integer references into resolved objects, breaking subsequent D[idx] lookups.
+    try {
+        const root        = D[0];
+        const stateArr    = D[root.state];
+        if (!Array.isArray(stateArr) || stateArr[0] !== 'Reactive') return null;
+        const reactiveObj = D[stateArr[1]];
+        const globalDataObj = D[reactiveObj['$sglobalData']]; // D[51] = { en: <int> }
+        if (!globalDataObj || typeof globalDataObj.en === 'undefined') return null;
+        const en          = D[globalDataObj.en]; // D[en_idx] = { paymentsMethodsData: <int>, ... }
+
+        // Build Contentful sys.id → country name lookup
+        const idToCountry = {};
+        for (const cRef of (D[en.globalDataCountry] || [])) {
+            const c = r(cRef);
+            if (c?.sys?.id && c?.name) idToCountry[c.sys.id] = c.name;
+        }
+
+        // Wallets and non-scheme overlays to skip
+        const ADYEN_EXCLUDE = new Set([
+            'Apple Pay', 'Google Pay™️', 'Samsung Pay',
+            'Amazon Pay (no longer available)',
+            'V Pay', 'BankAxept', 'Maestro', 'Carnet',
+            'Accel', 'NYCE', 'STAR', 'PULSE'
+        ]);
+
+        const ADYEN_DISPLAY = {
+            'American Express (AMEX)': 'AMEX',
+            'Rupay':  'RuPay',
+            'Diners': 'Diners Club',
+        };
+
+        // Build country → { native: [], external: [] }
+        const countryMap = {};
+        for (const pmRef of (D[en.paymentsMethodsData] || [])) {
+            const pm = r(pmRef);
+            const rawName = pm?.name || '';
+            if (ADYEN_EXCLUDE.has(rawName)) continue;
+
+            const types = (pm?.paymentMethodTypeCollection?.items || []).map(t => t?.name);
+            if (!types.includes('Cards')) continue;
+
+            const displayName = ADYEN_DISPLAY[rawName] || rawName;
+            for (const cd of (pm?.countryData || [])) {
+                // country is stored directly as a Contentful string ID (not an int ref)
+                const cid  = typeof cd?.country === 'string' ? cd.country : null;
+                const name = cid ? idToCountry[cid] : null;
+                if (!name) continue;
+                if (!countryMap[name]) countryMap[name] = { native: [], external: [] };
+                countryMap[name].native.push(displayName);
+            }
+        }
+        return countryMap;
+    } catch(e) {
+        return null;
+    }
+}
+
+// ─── CKO PARSER ───────────────────────────────────────────────────────────────
+function parseCKOHTML(html) {
+    // CKO's payment methods page is Webflow-rendered — each method has:
+    //   <a href="/payment-methods/{slug}"> ... <div id="consumer-countries-list">country, list</div>
+    if (!html.includes('consumer-countries-list')) return null;
+
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, 'text/html');
+
+    // Card schemes to extract (global + local)
+    const CKO_CARD_SLUGS = new Set([
+        'visa', 'mastercard', 'americanexpress', 'diners-club-international',
+        'discover', 'jcb', 'unionpay-international',
+        'bancontact', 'cartes-bancaires', 'knet', 'mada', 'qpay',
+        'benefit-payment-gateway', 'omannet'
+    ]);
+
+    const CKO_DISPLAY = {
+        'americanexpress':           'AMEX',
+        'diners-club-international': 'Diners Club',
+        'unionpay-international':    'UnionPay',
+        'benefit-payment-gateway':   'Benefit',
+        'cartes-bancaires':          'Cartes Bancaires',
+    };
+
+    // CKO country name → MASTER_CONFIG name where they differ
+    const CKO_NORMALIZE = {
+        'Hong Kong':           'Hong Kong SAR, China',
+        'South Korea':         'South Korea',
+        'Viet Nam':            'Vietnam',
+        'Korea, Republic of':  'South Korea',
+        'Czech Republic':      'Czech Republic',
+        'Czechia':             'Czech Republic',
+    };
+
+    const countryMap = {};
+
+    doc.querySelectorAll('a[href^="/payment-methods/"]').forEach(link => {
+        const slug = link.getAttribute('href').replace('/payment-methods/', '');
+        if (!CKO_CARD_SLUGS.has(slug)) return;
+
+        const countryListEl = link.querySelector('[id="consumer-countries-list"]');
+        if (!countryListEl) return;
+
+        const displayName = CKO_DISPLAY[slug] || slug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+        const countries = countryListEl.textContent.split(',').map(c => c.trim()).filter(Boolean);
+
+        countries.forEach(raw => {
+            const name = CKO_NORMALIZE[raw] || raw;
+            if (!countryMap[name]) countryMap[name] = { native: [], external: [] };
+            countryMap[name].native.push(displayName);
+        });
+    });
+
+    return Object.keys(countryMap).length > 0 ? countryMap : null;
+}
+
+// ─── GENERIC TEXT SCANNER FALLBACK ───────────────────────────────────────────
+function parseTextFallback(text) {
+    // Build a global scheme presence list from text scanning
+    const ALL_SCHEMES = [
+        "Visa", "Mastercard", "AMEX", "American Express", "Discover", "Diners Club",
+        "JCB", "UnionPay", "China UnionPay", "eftpos Australia", "Interac",
+        "Cartes Bancaires", "Bancontact", "Elo", "Hipercard", "Dankort",
+        "girocard", "PostFinance", "Troy", "RuPay", "Verve", "Korean cards"
+    ];
+    const lower = text.toLowerCase();
+    const found = ALL_SCHEMES.filter(s => lower.includes(s.toLowerCase()))
+        .map(s => DISPLAY_NAME[s] || s);
+
+    // Apply globally — caller will handle partial logic
+    const countryMap = {};
+    Object.keys(MASTER_CONFIG).forEach(country => {
+        countryMap[country] = { native: found, external: [] };
+    });
+    return countryMap;
+}
+
+// ─── BUILD RESULTS FROM COUNTRY MAP ─────────────────────────────────────────
+function buildResults(countryMap) {
+    const results = {};
+
+    Object.keys(MASTER_CONFIG).forEach(country => {
+        const region = MASTER_CONFIG[country];
+        const data = countryMap[country] || { native: [], external: [] };
+        const native   = [...new Set(data.native)];
+        const external = [...new Set(data.external)];
+
+        let status = 'not_available';
+        let notes  = 'No local merchant entity';
+        let missingExternal = [];
+        let missingCompletely = [];
+
+        if (native.length > 0) {
+            const required = REQUIRED_LOCAL[country] || [];
+            missingExternal   = required.filter(s => !native.includes(s) &&  external.includes(s));
+            missingCompletely = required.filter(s => !native.includes(s) && !external.includes(s));
+
+            if (missingExternal.length > 0 || missingCompletely.length > 0) {
+                status = 'partial';
+                if (missingExternal.length > 0) {
+                    notes = `${missingExternal.join(', ')} requires separate external agreement`;
+                } else {
+                    notes = `Missing ${missingCompletely.join(', ')} local scheme`;
+                }
+            } else {
+                status = 'supported';
+                notes  = required.length > 0
+                    ? `Full local acquiring incl. ${required.join(', ')}`
+                    : 'Full local acquiring';
+            }
+        }
+
+        results[country] = {
+            region,
+            missingExternal,   // preview only
+            missingCompletely, // preview only
+            domestic: {
+                status,
+                tags:  native,
+                notes
+            },
+            cross_border: {
+                status:  native.length > 0 ? 'supported' : 'supported',
+                tags:    ['Visa', 'Mastercard'],
+                notes:   native.length > 0 ? 'Global acquiring' : 'International card processing via global network'
+            }
+        };
+    });
+
+    return results;
+}
+
+// ─── MAIN EXTRACT FUNCTION ───────────────────────────────────────────────────
+function extract() {
+    const html = document.getElementById('raw-input').value.trim();
+    if (!html) { alert('Please paste raw HTML first.'); return; }
+
+    let countryMap  = null;
+    let formatMsg   = '';
+    let isStructured = false;
+
+    // Try Stripe-specific parser
+    if (html.includes('paymentMethodJSONData')) {
+        countryMap = parseStripeHTML(html);
+        if (countryMap) {
+            isStructured = true;
+            formatMsg = `<span class="text-emerald-700">✓ Stripe format detected</span> — parsed <code>paymentMethodJSONData</code> JSON. Card schemes extracted per country with native vs. external classification.`;
+        }
+    }
+
+    // Try Adyen-specific parser
+    if (!countryMap && html.includes('__NUXT_DATA__')) {
+        countryMap = parseAdyenHTML(html);
+        if (countryMap) {
+            isStructured = true;
+            formatMsg = `<span class="text-emerald-700">✓ Adyen format detected</span> — parsed <code>__NUXT_DATA__</code> Nuxt SSR JSON. Card schemes extracted per country from Adyen's payment methods page.`;
+        }
+    }
+
+    // Try CKO-specific parser
+    if (!countryMap && html.includes('consumer-countries-list')) {
+        countryMap = parseCKOHTML(html);
+        if (countryMap) {
+            isStructured = true;
+            formatMsg = `<span class="text-emerald-700">✓ CKO format detected</span> — parsed Webflow <code>consumer-countries-list</code> data. Card schemes extracted per country from checkout.com/payment-methods.`;
+        }
+    }
+
+    // Fall back to text scan
+    if (!countryMap) {
+        countryMap = parseTextFallback(html);
+        formatMsg  = `<span class="text-amber-600">⚠ Format not detected</span> — using text scan fallback. Results are global estimates only. For accurate per-country data, paste the full HTML from the competitor's payment methods page.`;
+    }
+
+    extractedResults = buildResults(countryMap);
+    renderPreview(extractedResults, isStructured, formatMsg);
+    document.getElementById('preview-section').classList.remove('hidden');
+    document.getElementById('preview-section').scrollIntoView({ behavior: 'smooth' });
+}
+
+// ─── RENDER PREVIEW TABLE ─────────────────────────────────────────────────────
+function renderPreview(results, isStructured, formatMsg) {
+    // Format banner
+    const banner = document.getElementById('format-banner');
+    const bannerColor = isStructured ? 'bg-emerald-50 border border-emerald-200 text-emerald-800' : 'bg-amber-50 border border-amber-200 text-amber-800';
+    banner.className = `rounded-2xl px-6 py-4 mb-6 text-xs font-medium flex items-start gap-3 ${bannerColor}`;
+    banner.innerHTML = `<div>${formatMsg}</div>`;
+
+    // Stats
+    const counts = { supported: 0, partial: 0, not_available: 0 };
+    Object.values(results).forEach(r => counts[r.domestic.status]++);
+    document.getElementById('stat-total').textContent     = Object.keys(results).length;
+    document.getElementById('stat-supported').textContent = counts.supported;
+    document.getElementById('stat-partial').textContent   = counts.partial;
+    document.getElementById('stat-na').textContent        = counts.not_available;
+
+    // Group by region
+    const byRegion = {};
+    Object.entries(results).forEach(([country, data]) => {
+        if (!byRegion[data.region]) byRegion[data.region] = [];
+        byRegion[data.region].push([country, data]);
+    });
+    const regionOrder = ['Africa', 'Asia Pacific', 'Europe', 'Latin America', 'Middle East & North Africa', 'North America'];
+
+    const tbody = document.getElementById('preview-tbody');
+    tbody.innerHTML = '';
+
+    const STATUS_ICON  = { supported: '✓', partial: '≈', not_available: '×' };
+    const STATUS_COLOR = { supported: 'text-emerald-600', partial: 'text-amber-500', not_available: 'text-rose-400' };
+    const ROW_COLOR    = { supported: 'row-supported', partial: 'row-partial', not_available: 'row-not_available' };
+
+    regionOrder.forEach(region => {
+        if (!byRegion[region]) return;
+
+        // Region header
+        const regionRow = document.createElement('tr');
+        regionRow.className = 'region-header';
+        regionRow.innerHTML = `<td colspan="5">${region}</td>`;
+        tbody.appendChild(regionRow);
+
+        byRegion[region].sort((a, b) => a[0].localeCompare(b[0])).forEach(([country, data]) => {
+            const d = data.domestic;
+            const tr = document.createElement('tr');
+            tr.className = ROW_COLOR[d.status];
+
+            const nativePills   = d.tags.map(t => tag(t, 'native')).join(' ');
+            const externalPills = data.missingExternal.map(t => tag(t + ' (ext)', 'external')).join(' ') +
+                                  data.missingCompletely.map(t => tag(t + ' (missing)', 'external')).join(' ');
+
+            tr.innerHTML = `
+                <td class="px-5 py-3 font-extrabold text-slate-900 text-sm">${country}</td>
+                <td class="px-4 py-3">
+                    <span class="font-black text-xl ${STATUS_COLOR[d.status]}">${STATUS_ICON[d.status]}</span>
+                    <span class="ml-1 text-[9px] font-black uppercase tracking-wider ${STATUS_COLOR[d.status]}">${d.status.replace('_', ' ')}</span>
+                </td>
+                <td class="px-5 py-3">
+                    <div class="flex flex-wrap gap-1">${nativePills || '<span class="text-slate-300 text-[9px] italic">none</span>'}</div>
+                </td>
+                <td class="px-5 py-3">
+                    <div class="flex flex-wrap gap-1">${externalPills || '<span class="text-slate-300 text-[9px] italic">—</span>'}</div>
+                </td>
+                <td class="px-5 py-3 text-[11px] text-slate-500 italic">${d.notes}</td>
+            `;
+            tbody.appendChild(tr);
+        });
+    });
+}
+
+// ─── DOWNLOAD JSON ────────────────────────────────────────────────────────────
+function downloadJSON() {
+    if (!extractedResults) { alert('Run extraction first.'); return; }
+
+    // Strip preview-only fields before export
+    const clean = {};
+    Object.entries(extractedResults).forEach(([country, data]) => {
+        clean[country] = {
+            region: data.region,
+            domestic: data.domestic,
+            cross_border: data.cross_border
+        };
+    });
+
+    const date = new Date().toISOString().split('T')[0];
+    const output = {
+        Metadata: { Competitor: currentComp, LastUpdated: date },
+        Countries: clean
+    };
+
+    const blob = new Blob([JSON.stringify(output, null, 2)], { type: 'application/json' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = currentComp.toLowerCase() + '.json';
+    a.click();
+}
+
+// Init
+setComp('Stripe');
+</script>
 </body>
 </html>

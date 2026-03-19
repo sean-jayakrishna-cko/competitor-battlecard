@@ -1,58 +1,368 @@
 {
   "Metadata": {
     "Competitor": "WorldPay",
-    "LastUpdated": "2026-03-17"
+    "LastUpdated": "2026-03-19"
   },
   "Countries": {
-    "Australia": {
-      "region": "APAC",
-      "domestic": { "status": "supported", "tags": ["card", "eftpos", "Apple Pay"], "notes": "Direct local acquiring" },
-      "cross_border": { "status": "supported", "tags": ["card"], "notes": "International processing" }
+    "Egypt": {
+      "region": "Middle East & North Africa",
+      "domestic": { "status": "not_available", "tags": [], "notes": "No local merchant entity" },
+      "cross_border": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "International card processing via global network" }
     },
-    "Singapore": {
-      "region": "APAC",
-      "domestic": { "status": "supported", "tags": ["card", "NETS", "GrabPay", "Apple Pay"], "notes": "Full local licenses" },
-      "cross_border": { "status": "supported", "tags": ["card"], "notes": "International" }
+    "Kenya": {
+      "region": "Africa",
+      "domestic": { "status": "not_available", "tags": [], "notes": "No local merchant entity" },
+      "cross_border": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "International card processing via global network" }
+    },
+    "Morocco": {
+      "region": "Middle East & North Africa",
+      "domestic": { "status": "not_available", "tags": [], "notes": "No local merchant entity" },
+      "cross_border": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "International card processing via global network" }
+    },
+    "Mozambique": {
+      "region": "Africa",
+      "domestic": { "status": "not_available", "tags": [], "notes": "No local merchant entity" },
+      "cross_border": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "International card processing via global network" }
+    },
+    "Nigeria": {
+      "region": "Africa",
+      "domestic": { "status": "not_available", "tags": [], "notes": "No local merchant entity" },
+      "cross_border": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "International card processing via global network" }
+    },
+    "Tanzania": {
+      "region": "Africa",
+      "domestic": { "status": "not_available", "tags": [], "notes": "No local merchant entity" },
+      "cross_border": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "International card processing via global network" }
+    },
+    "Zambia": {
+      "region": "Africa",
+      "domestic": { "status": "not_available", "tags": [], "notes": "No local merchant entity" },
+      "cross_border": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "International card processing via global network" }
+    },
+    "Australia": {
+      "region": "Asia Pacific",
+      "domestic": { "status": "supported", "tags": ["Visa", "Mastercard", "AMEX", "eftpos Australia"], "notes": "Full local acquiring incl. eftpos domestic debit" },
+      "cross_border": { "status": "supported", "tags": ["Visa", "Mastercard", "AMEX"], "notes": "Global acquiring" }
+    },
+    "China": {
+      "region": "Asia Pacific",
+      "domestic": { "status": "not_available", "tags": [], "notes": "Domestic RMB card acquiring not available" },
+      "cross_border": { "status": "supported", "tags": ["Visa", "Mastercard", "UnionPay"], "notes": "Foreign-issued card acceptance only" }
+    },
+    "Hong Kong": {
+      "region": "Asia Pacific",
+      "domestic": { "status": "supported", "tags": ["Visa", "Mastercard", "AMEX", "UnionPay"], "notes": "Full local acquiring" },
+      "cross_border": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "Global acquiring" }
+    },
+    "Hong Kong SAR, China": {
+      "region": "Asia Pacific",
+      "domestic": { "status": "supported", "tags": ["Visa", "Mastercard", "AMEX", "UnionPay"], "notes": "Full local acquiring" },
+      "cross_border": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "Global acquiring" }
+    },
+    "India": {
+      "region": "Asia Pacific",
+      "domestic": { "status": "partial", "tags": ["Visa", "Mastercard", "AMEX"], "notes": "Missing RuPay domestic debit scheme" },
+      "cross_border": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "Global acquiring" }
+    },
+    "Indonesia": {
+      "region": "Asia Pacific",
+      "domestic": { "status": "partial", "tags": ["Visa", "Mastercard"], "notes": "Missing GPN (local domestic debit network)" },
+      "cross_border": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "Global acquiring" }
     },
     "Japan": {
-      "region": "APAC",
-      "domestic": { "status": "supported", "tags": ["card", "Konbini", "PayPay"], "notes": "Local entity required" },
-      "cross_border": { "status": "supported", "tags": ["card"], "notes": "International" }
+      "region": "Asia Pacific",
+      "domestic": { "status": "supported", "tags": ["Visa", "Mastercard", "AMEX", "JCB", "Diners Club"], "notes": "Full local acquiring incl. JCB domestic scheme" },
+      "cross_border": { "status": "supported", "tags": ["Visa", "Mastercard", "JCB"], "notes": "Global acquiring" }
     },
-    "Brazil": {
-      "region": "LATAM",
-      "domestic": { "status": "supported", "tags": ["card", "Pix", "Boleto"], "notes": "Full APM support" },
-      "cross_border": { "status": "supported", "tags": ["card"], "notes": "International rails" }
+    "Malaysia": {
+      "region": "Asia Pacific",
+      "domestic": { "status": "supported", "tags": ["Visa", "Mastercard", "AMEX"], "notes": "Full local acquiring" },
+      "cross_border": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "Global acquiring" }
     },
-    "Mexico": {
-      "region": "LATAM",
-      "domestic": { "status": "supported", "tags": ["card", "OXXO", "SPEI"], "notes": "Local acquiring available" },
-      "cross_border": { "status": "supported", "tags": ["card"], "notes": "International" }
+    "New Zealand": {
+      "region": "Asia Pacific",
+      "domestic": { "status": "supported", "tags": ["Visa", "Mastercard", "AMEX"], "notes": "Full local acquiring" },
+      "cross_border": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "Global acquiring" }
     },
-    "Canada": {
-      "region": "North America",
-      "domestic": { "status": "supported", "tags": ["card", "InstaDebit", "Apple Pay"], "notes": "Local CAD processing" },
-      "cross_border": { "status": "supported", "tags": ["card"], "notes": "Standard international" }
+    "Philippines": {
+      "region": "Asia Pacific",
+      "domestic": { "status": "supported", "tags": ["Visa", "Mastercard", "AMEX"], "notes": "Full local acquiring" },
+      "cross_border": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "Global acquiring" }
     },
-    "United States": {
-      "region": "North America",
-      "domestic": { "status": "supported", "tags": ["card", "ACH", "Apple Pay", "Google Pay"], "notes": "Primary market" },
-      "cross_border": { "status": "supported", "tags": ["card"], "notes": "International" }
+    "Singapore": {
+      "region": "Asia Pacific",
+      "domestic": { "status": "supported", "tags": ["Visa", "Mastercard", "AMEX"], "notes": "Full local acquiring" },
+      "cross_border": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "Global acquiring" }
     },
-    "United Kingdom": {
+    "South Korea": {
+      "region": "Asia Pacific",
+      "domestic": { "status": "partial", "tags": ["Visa", "Mastercard"], "notes": "Missing local Korean domestic debit schemes" },
+      "cross_border": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "Global acquiring" }
+    },
+    "Thailand": {
+      "region": "Asia Pacific",
+      "domestic": { "status": "supported", "tags": ["Visa", "Mastercard", "AMEX"], "notes": "Full local acquiring" },
+      "cross_border": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "Global acquiring" }
+    },
+    "Vietnam": {
+      "region": "Asia Pacific",
+      "domestic": { "status": "partial", "tags": ["Visa", "Mastercard"], "notes": "Missing Napas domestic debit scheme" },
+      "cross_border": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "Global acquiring" }
+    },
+    "Andorra": {
       "region": "Europe",
-      "domestic": { "status": "supported", "tags": ["card", "PayPal", "Apple Pay"], "notes": "Primary market hub" },
-      "cross_border": { "status": "supported", "tags": ["card"], "notes": "Europe regional lead" }
+      "domestic": { "status": "not_available", "tags": [], "notes": "No local merchant entity" },
+      "cross_border": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "International card processing via global network" }
     },
-    "Netherlands": {
+    "Austria": {
       "region": "Europe",
-      "domestic": { "status": "supported", "tags": ["card", "iDEAL"], "notes": "Full local support" },
-      "cross_border": { "status": "supported", "tags": ["card"], "notes": "International" }
+      "domestic": { "status": "supported", "tags": ["Visa", "Mastercard", "AMEX"], "notes": "Full local acquiring" },
+      "cross_border": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "Global acquiring" }
+    },
+    "Belgium": {
+      "region": "Europe",
+      "domestic": { "status": "supported", "tags": ["Visa", "Mastercard", "AMEX", "Bancontact"], "notes": "Full local acquiring incl. Bancontact domestic debit" },
+      "cross_border": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "Global acquiring" }
+    },
+    "Bulgaria": {
+      "region": "Europe",
+      "domestic": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "Full local acquiring" },
+      "cross_border": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "Global acquiring" }
+    },
+    "Croatia": {
+      "region": "Europe",
+      "domestic": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "Full local acquiring" },
+      "cross_border": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "Global acquiring" }
+    },
+    "Cyprus": {
+      "region": "Europe",
+      "domestic": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "Full local acquiring" },
+      "cross_border": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "Global acquiring" }
+    },
+    "Czech Republic": {
+      "region": "Europe",
+      "domestic": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "Full local acquiring" },
+      "cross_border": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "Global acquiring" }
+    },
+    "Denmark": {
+      "region": "Europe",
+      "domestic": { "status": "partial", "tags": ["Visa", "Mastercard"], "notes": "Missing Dankort domestic debit scheme" },
+      "cross_border": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "Global acquiring" }
+    },
+    "Estonia": {
+      "region": "Europe",
+      "domestic": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "Full local acquiring" },
+      "cross_border": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "Global acquiring" }
+    },
+    "Finland": {
+      "region": "Europe",
+      "domestic": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "Full local acquiring" },
+      "cross_border": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "Global acquiring" }
+    },
+    "France": {
+      "region": "Europe",
+      "domestic": { "status": "supported", "tags": ["Visa", "Mastercard", "AMEX", "Cartes Bancaires"], "notes": "Full local acquiring incl. Cartes Bancaires domestic debit" },
+      "cross_border": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "Global acquiring" }
     },
     "Germany": {
       "region": "Europe",
-      "domestic": { "status": "supported", "tags": ["card", "Sofort", "Giropay"], "notes": "Full local support" },
-      "cross_border": { "status": "supported", "tags": ["card"], "notes": "International" }
+      "domestic": { "status": "partial", "tags": ["Visa", "Mastercard", "AMEX"], "notes": "Missing girocard local debit scheme" },
+      "cross_border": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "Global acquiring" }
+    },
+    "Gibraltar": {
+      "region": "Europe",
+      "domestic": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "Full local acquiring via UK entity" },
+      "cross_border": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "Global acquiring" }
+    },
+    "Greece": {
+      "region": "Europe",
+      "domestic": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "Full local acquiring" },
+      "cross_border": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "Global acquiring" }
+    },
+    "Holy See (Vatican City)": {
+      "region": "Europe",
+      "domestic": { "status": "not_available", "tags": [], "notes": "No local merchant entity" },
+      "cross_border": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "International card processing via global network" }
+    },
+    "Hungary": {
+      "region": "Europe",
+      "domestic": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "Full local acquiring" },
+      "cross_border": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "Global acquiring" }
+    },
+    "Iceland": {
+      "region": "Europe",
+      "domestic": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "Full local acquiring" },
+      "cross_border": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "Global acquiring" }
+    },
+    "Ireland": {
+      "region": "Europe",
+      "domestic": { "status": "supported", "tags": ["Visa", "Mastercard", "AMEX"], "notes": "Full local acquiring" },
+      "cross_border": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "Global acquiring" }
+    },
+    "Italy": {
+      "region": "Europe",
+      "domestic": { "status": "supported", "tags": ["Visa", "Mastercard", "AMEX"], "notes": "Full local acquiring" },
+      "cross_border": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "Global acquiring" }
+    },
+    "Latvia": {
+      "region": "Europe",
+      "domestic": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "Full local acquiring" },
+      "cross_border": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "Global acquiring" }
+    },
+    "Liechtenstein": {
+      "region": "Europe",
+      "domestic": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "Full local acquiring via Swiss/EEA entity" },
+      "cross_border": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "Global acquiring" }
+    },
+    "Lithuania": {
+      "region": "Europe",
+      "domestic": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "Full local acquiring" },
+      "cross_border": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "Global acquiring" }
+    },
+    "Luxembourg": {
+      "region": "Europe",
+      "domestic": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "Full local acquiring" },
+      "cross_border": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "Global acquiring" }
+    },
+    "Malta": {
+      "region": "Europe",
+      "domestic": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "Full local acquiring" },
+      "cross_border": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "Global acquiring" }
+    },
+    "Netherlands": {
+      "region": "Europe",
+      "domestic": { "status": "supported", "tags": ["Visa", "Mastercard", "AMEX"], "notes": "Full local acquiring" },
+      "cross_border": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "Global acquiring" }
+    },
+    "Norway": {
+      "region": "Europe",
+      "domestic": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "Full local acquiring" },
+      "cross_border": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "Global acquiring" }
+    },
+    "Poland": {
+      "region": "Europe",
+      "domestic": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "Full local acquiring" },
+      "cross_border": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "Global acquiring" }
+    },
+    "Portugal": {
+      "region": "Europe",
+      "domestic": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "Full local acquiring" },
+      "cross_border": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "Global acquiring" }
+    },
+    "Romania": {
+      "region": "Europe",
+      "domestic": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "Full local acquiring" },
+      "cross_border": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "Global acquiring" }
+    },
+    "San Marino": {
+      "region": "Europe",
+      "domestic": { "status": "not_available", "tags": [], "notes": "No local merchant entity" },
+      "cross_border": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "International card processing via global network" }
+    },
+    "Slovakia": {
+      "region": "Europe",
+      "domestic": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "Full local acquiring" },
+      "cross_border": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "Global acquiring" }
+    },
+    "Slovenia": {
+      "region": "Europe",
+      "domestic": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "Full local acquiring" },
+      "cross_border": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "Global acquiring" }
+    },
+    "Spain": {
+      "region": "Europe",
+      "domestic": { "status": "supported", "tags": ["Visa", "Mastercard", "AMEX"], "notes": "Full local acquiring" },
+      "cross_border": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "Global acquiring" }
+    },
+    "Sweden": {
+      "region": "Europe",
+      "domestic": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "Full local acquiring" },
+      "cross_border": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "Global acquiring" }
+    },
+    "Switzerland": {
+      "region": "Europe",
+      "domestic": { "status": "partial", "tags": ["Visa", "Mastercard", "AMEX"], "notes": "Missing PostFinance local debit scheme" },
+      "cross_border": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "Global acquiring" }
+    },
+    "Turkey": {
+      "region": "Europe",
+      "domestic": { "status": "partial", "tags": ["Visa", "Mastercard"], "notes": "Missing Troy domestic debit scheme" },
+      "cross_border": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "Global acquiring" }
+    },
+    "Ukraine": {
+      "region": "Europe",
+      "domestic": { "status": "not_available", "tags": [], "notes": "No local merchant entity; market access restricted" },
+      "cross_border": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "International card processing via global network" }
+    },
+    "United Kingdom": {
+      "region": "Europe",
+      "domestic": { "status": "supported", "tags": ["Visa", "Mastercard", "AMEX"], "notes": "Core market; full local acquiring" },
+      "cross_border": { "status": "supported", "tags": ["Visa", "Mastercard", "AMEX"], "notes": "Global acquiring" }
+    },
+    "Argentina": {
+      "region": "Latin America",
+      "domestic": { "status": "not_available", "tags": [], "notes": "No local merchant entity" },
+      "cross_border": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "International card processing via global network" }
+    },
+    "Brazil": {
+      "region": "Latin America",
+      "domestic": { "status": "supported", "tags": ["Visa", "Mastercard", "AMEX", "Elo"], "notes": "Full local acquiring incl. Elo domestic scheme" },
+      "cross_border": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "Global acquiring" }
+    },
+    "Chile": {
+      "region": "Latin America",
+      "domestic": { "status": "not_available", "tags": [], "notes": "No local merchant entity" },
+      "cross_border": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "International card processing via global network" }
+    },
+    "Mexico": {
+      "region": "Latin America",
+      "domestic": { "status": "supported", "tags": ["Visa", "Mastercard", "AMEX"], "notes": "Full local acquiring" },
+      "cross_border": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "Global acquiring" }
+    },
+    "Saint Martin (French part)": {
+      "region": "Latin America",
+      "domestic": { "status": "partial", "tags": ["Visa", "Mastercard"], "notes": "Processed via European entity; limited local coverage" },
+      "cross_border": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "Global acquiring" }
+    },
+    "Bahrain": {
+      "region": "Middle East & North Africa",
+      "domestic": { "status": "not_available", "tags": [], "notes": "No local merchant entity" },
+      "cross_border": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "International card processing via global network" }
+    },
+    "Israel": {
+      "region": "Middle East & North Africa",
+      "domestic": { "status": "partial", "tags": ["Visa", "Mastercard"], "notes": "Limited presence; not a primary market" },
+      "cross_border": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "Global acquiring" }
+    },
+    "Kuwait": {
+      "region": "Middle East & North Africa",
+      "domestic": { "status": "not_available", "tags": [], "notes": "No local merchant entity" },
+      "cross_border": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "International card processing via global network" }
+    },
+    "Oman": {
+      "region": "Middle East & North Africa",
+      "domestic": { "status": "not_available", "tags": [], "notes": "No local merchant entity" },
+      "cross_border": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "International card processing via global network" }
+    },
+    "Qatar": {
+      "region": "Middle East & North Africa",
+      "domestic": { "status": "not_available", "tags": [], "notes": "No local merchant entity" },
+      "cross_border": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "International card processing via global network" }
+    },
+    "United Arab Emirates": {
+      "region": "Middle East & North Africa",
+      "domestic": { "status": "supported", "tags": ["Visa", "Mastercard", "AMEX"], "notes": "Full local acquiring via UAE entity" },
+      "cross_border": { "status": "supported", "tags": ["Visa", "Mastercard"], "notes": "Global acquiring" }
+    },
+    "Canada": {
+      "region": "North America",
+      "domestic": { "status": "supported", "tags": ["Visa", "Mastercard", "AMEX", "Interac"], "notes": "Full local acquiring incl. Interac domestic debit" },
+      "cross_border": { "status": "supported", "tags": ["Visa", "Mastercard", "AMEX"], "notes": "Global acquiring" }
+    },
+    "United States": {
+      "region": "North America",
+      "domestic": { "status": "supported", "tags": ["Visa", "Mastercard", "AMEX", "Discover", "Diners Club", "JCB", "UnionPay"], "notes": "Core market; broadest scheme coverage" },
+      "cross_border": { "status": "supported", "tags": ["Visa", "Mastercard", "AMEX"], "notes": "Global acquiring" }
     }
   }
 }

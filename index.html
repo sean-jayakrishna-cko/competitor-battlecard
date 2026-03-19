@@ -2,125 +2,362 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Card Rail Intelligence Battlecard v3</title>
+    <title>Global Rail Intelligence | CKO Edition</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* v3 Pill Styling: Increased padding, full roundness, and wider margins */
-        .rail-pill { 
-            @apply inline-flex items-center px-4 py-1 rounded-full text-[10px] font-bold uppercase mr-2 mb-1 tracking-wider border transition-all;
-            background-color: #E6F4EA; 
-            color: #137333;
-            border-color: #CEEAD6;
+        /* ── Fluid type scale (scales from 14" MBP → large monitor) ─── */
+        :root {
+            --t-2xs:  clamp(9px,  0.6vw, 11px);   /* micro labels        */
+            --t-xs:   clamp(10px, 0.7vw, 12px);   /* pills, badges, flow */
+            --t-sm:   clamp(11px, 0.75vw, 13px);  /* col headers, notes  */
+            --t-base: clamp(13px, 0.9vw, 16px);   /* country name        */
+            --t-lg:   clamp(16px, 1.4vw, 24px);   /* region label        */
         }
-        .status-supported { @apply text-emerald-600 font-black text-2xl; }
-        .status-partial { @apply text-amber-500 font-black text-2xl; }
-        .status-not_available { @apply text-rose-500 font-black text-2xl; }
-        
-        /* Row highlighting for better scannability */
-        .country-row:hover { background-color: #f8fafc; }
+
+        /* ── Cell-level status tinting ───────────────────────────────── */
+        td.cell-partial       { background-color: #fffbeb; }
+        td.cell-not_available { background-color: #fff1f2; }
+
+        /* ── Status badge ────────────────────────────────────────────── */
+        .status-badge {
+            display: inline-flex; align-items: center; gap: 4px;
+            padding: clamp(3px, 0.25vw, 5px) clamp(8px, 0.6vw, 12px);
+            border-radius: 9999px;
+            font-size: var(--t-xs); font-weight: 800; letter-spacing: 0.07em;
+            text-transform: uppercase; border: 1px solid;
+            white-space: nowrap; margin-bottom: clamp(6px, 0.4vw, 10px);
+        }
+        .status-badge.supported     { background: #dcfce7; color: #15803d; border-color: #86efac; }
+        .status-badge.partial       { background: #fef9c3; color: #a16207; border-color: #fde047; }
+        .status-badge.not_available { background: #ffe4e6; color: #be123c; border-color: #fda4af; }
+
+        /* ── Rail pills ──────────────────────────────────────────────── */
+        .pill-container {
+            display: flex; flex-wrap: wrap;
+            justify-content: center;
+            gap: clamp(3px, 0.3vw, 5px);
+            padding: 2px;
+        }
+        .rail-pill {
+            display: inline-flex; align-items: center;
+            padding: clamp(2px, 0.2vw, 4px) clamp(6px, 0.5vw, 10px);
+            border-radius: 5px;
+            font-size: var(--t-xs); font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.06em;
+            background: #ffffff; color: #1e293b;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+            white-space: nowrap;
+        }
+
+        /* ── Table structure ─────────────────────────────────────────── */
+        .col-market   { font-size: var(--t-base); }
+        .col-region   { font-size: var(--t-2xs); }
+        .col-flow     { font-size: var(--t-xs); }
+        .col-header   { font-size: var(--t-sm); }
+        .col-notes    { font-size: var(--t-xs); }
+        .col-no-intel { font-size: var(--t-xs); }
+
+        /* ── Sticky header ───────────────────────────────────────────── */
+        .sticky-header th {
+            position: sticky; top: 0; z-index: 10;
+            background: #f8fafc;
+            box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.06);
+        }
+
+        /* ── Row hover (overrides cell tint) ─────────────────────────── */
+        .country-row:hover td { background-color: #f1f5f9 !important; }
+
+        /* ── Competitor toggle buttons ────────────────────────────────── */
+        .comp-toggle { transition: all 0.15s; opacity: 0.35; }
+        .comp-toggle.active { opacity: 1; }
+
+        /* ── Fluid button text ───────────────────────────────────────── */
+        .region-btn-text { font-size: var(--t-sm); padding: clamp(6px,0.4vw,10px) clamp(12px,0.8vw,20px); }
     </style>
 </head>
-<body class="bg-[#F1F5F9] p-8 text-slate-800">
-    <div class="max-w-7xl mx-auto">
-        <header class="flex justify-between items-end mb-10 border-b border-slate-300 pb-8">
-            <div>
-                <h1 class="text-4xl font-black tracking-tight text-slate-900 uppercase">Card Rail Battlecard</h1>
-                <p class="text-slate-500 font-semibold mt-2">Network Integration & Local Scheme Intelligence</p>
+<body class="bg-[#F8FAFC] p-6 text-slate-800 font-sans">
+    <div class="max-w-[2400px] mx-auto">
+
+        <header class="flex flex-col gap-4 mb-6">
+            <!-- Row 1: title + search + region -->
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+                <div>
+                    <h1 class="text-3xl lg:text-4xl xl:text-5xl font-black tracking-tighter text-slate-900 uppercase italic">Rail Intelligence</h1>
+                    <p class="text-slate-500 font-bold mt-1 uppercase tracking-[0.2em]" style="font-size:var(--t-sm)">Competitive Network & Scheme Integration Analysis</p>
+                </div>
+
+                <div class="relative min-w-[280px]">
+                    <input type="text" id="marketSearch" onkeyup="renderTable()" placeholder="Search market or rail (e.g. 'France' or 'Visa')..."
+                           class="w-full pl-10 pr-4 py-3 bg-white border border-slate-200 rounded-2xl shadow-sm focus:ring-2 focus:ring-indigo-500 outline-none text-sm">
+                    <div class="absolute left-3 top-3.5 text-slate-400">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap gap-1.5 p-1.5 bg-slate-200/50 rounded-2xl">
+                    <button onclick="setRegion('All')" class="region-btn px-4 py-2 region-btn-text font-black rounded-xl uppercase transition-all bg-white shadow-sm">All</button>
+                    <button onclick="setRegion('Africa')" class="region-btn px-4 py-2 region-btn-text font-black rounded-xl uppercase transition-all hover:bg-white/50">Africa</button>
+                    <button onclick="setRegion('Asia Pacific')" class="region-btn px-4 py-2 region-btn-text font-black rounded-xl uppercase transition-all hover:bg-white/50">APAC</button>
+                    <button onclick="setRegion('Europe')" class="region-btn px-4 py-2 region-btn-text font-black rounded-xl uppercase transition-all hover:bg-white/50">Europe</button>
+                    <button onclick="setRegion('Latin America')" class="region-btn px-4 py-2 region-btn-text font-black rounded-xl uppercase transition-all hover:bg-white/50">LATAM</button>
+                    <button onclick="setRegion('Middle East & North Africa')" class="region-btn px-4 py-2 region-btn-text font-black rounded-xl uppercase transition-all hover:bg-white/50">MENA</button>
+                    <button onclick="setRegion('North America')" class="region-btn px-4 py-2 region-btn-text font-black rounded-xl uppercase transition-all hover:bg-white/50">North Am</button>
+                </div>
             </div>
-            <div class="flex space-x-2 p-1.5 bg-slate-200 rounded-2xl shadow-inner">
-                <button onclick="filterRegion('All')" class="px-5 py-2 text-xs font-bold rounded-xl transition-all hover:bg-white/60 focus:bg-white focus:shadow-sm uppercase">All</button>
-                <button onclick="filterRegion('APAC')" class="px-5 py-2 text-xs font-bold rounded-xl transition-all hover:bg-white/60 focus:bg-white uppercase">APAC</button>
-                <button onclick="filterRegion('LATAM')" class="px-5 py-2 text-xs font-bold rounded-xl transition-all hover:bg-white/60 focus:bg-white uppercase">LATAM</button>
-                <button onclick="filterRegion('North America')" class="px-5 py-2 text-xs font-bold rounded-xl transition-all hover:bg-white/60 focus:bg-white uppercase">NA</button>
-                <button onclick="filterRegion('Europe')" class="px-5 py-2 text-xs font-bold rounded-xl transition-all hover:bg-white/60 focus:bg-white uppercase">EU</button>
+
+            <!-- Row 2: flow filter + competitor toggles -->
+            <div class="flex flex-wrap items-center gap-4">
+                <!-- Flow filter -->
+                <div class="flex items-center gap-2">
+                    <span class="font-black text-slate-400 uppercase tracking-widest" style="font-size:var(--t-xs)">Flow</span>
+                    <div class="flex gap-1 p-1 bg-slate-200/50 rounded-xl">
+                        <button onclick="setFlow('both')" class="flow-btn px-3 py-1.5 font-black rounded-lg uppercase transition-all bg-white shadow-sm" style="font-size:var(--t-xs)">Both</button>
+                        <button onclick="setFlow('domestic')" class="flow-btn px-3 py-1.5 font-black rounded-lg uppercase transition-all hover:bg-white/50" style="font-size:var(--t-xs)">Domestic</button>
+                        <button onclick="setFlow('cross_border')" class="flow-btn px-3 py-1.5 font-black rounded-lg uppercase transition-all hover:bg-white/50" style="font-size:var(--t-xs)">Cross-border</button>
+                    </div>
+                </div>
+
+                <!-- Competitor toggles -->
+                <div class="flex items-center gap-2">
+                    <span class="text-[9px] font-black text-slate-400 uppercase tracking-widest">Competitors</span>
+                    <div id="comp-toggles" class="flex gap-1.5"></div>
+                </div>
             </div>
         </header>
 
-        <div class="bg-white shadow-2xl rounded-3xl overflow-hidden border border-slate-200">
-            <table class="min-w-full divide-y divide-slate-200">
-                <thead class="bg-slate-50">
-                    <tr>
-                        <th class="px-8 py-5 text-left text-[11px] font-black text-slate-400 uppercase tracking-[0.2em] w-64">Market</th>
-                        <th class="px-4 py-5 text-left text-[11px] font-black text-slate-400 uppercase tracking-[0.2em] w-32">Acquiring</th>
-                        <th class="px-8 py-5 text-center text-[11px] font-black text-slate-400 uppercase tracking-[0.2em] border-l border-slate-100">Stripe</th>
-                        <th class="px-8 py-5 text-center text-[11px] font-black text-slate-400 uppercase tracking-[0.2em] border-l border-slate-100">Adyen</th>
-                        <th class="px-8 py-5 text-center text-[11px] font-black text-slate-400 uppercase tracking-[0.2em] border-l border-slate-100">WorldPay</th>
-                    </tr>
-                </thead>
-                <tbody id="main-table" class="bg-white divide-y divide-slate-100 text-sm font-medium">
-                    </tbody>
-            </table>
+        <div class="bg-white shadow-xl rounded-3xl overflow-hidden border border-slate-200">
+            <div class="overflow-x-auto max-h-[800px]">
+                <table class="min-w-full divide-y divide-slate-200 border-collapse">
+                    <thead id="main-thead" class="sticky-header"></thead>
+                    <tbody id="main-table" class="bg-white divide-y divide-slate-100"></tbody>
+                </table>
+            </div>
         </div>
 
-        <footer class="mt-12 mb-8 flex justify-center space-x-6">
-            <a href="extractor.html" class="text-[10px] text-slate-400 hover:text-indigo-600 transition-colors uppercase tracking-widest font-black border-b border-transparent hover:border-indigo-600">Admin: Update Rails →</a>
+        <footer class="mt-8 mb-12 flex justify-between items-center px-4">
+            <div class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">
+                Scope: Card Schemes & Integrated Local Rails Only
+            </div>
+            <a href="extractor.html" class="text-[10px] text-indigo-600 hover:text-indigo-800 transition-colors uppercase font-black tracking-widest flex items-center">
+                Admin: Update Rail Data
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+            </a>
         </footer>
     </div>
 
     <script>
+        const MASTER_CONFIG = {
+            "Egypt": "Middle East & North Africa", "Kenya": "Africa", "Morocco": "Middle East & North Africa",
+            "Mozambique": "Africa", "Nigeria": "Africa", "Tanzania": "Africa", "Zambia": "Africa",
+            "Australia": "Asia Pacific", "China": "Asia Pacific", "Hong Kong": "Asia Pacific",
+            "Hong Kong SAR, China": "Asia Pacific", "India": "Asia Pacific", "Indonesia": "Asia Pacific",
+            "Japan": "Asia Pacific", "Malaysia": "Asia Pacific", "New Zealand": "Asia Pacific",
+            "Philippines": "Asia Pacific", "Singapore": "Asia Pacific", "South Korea": "Asia Pacific",
+            "Thailand": "Asia Pacific", "Vietnam": "Asia Pacific", "Andorra": "Europe", "Austria": "Europe",
+            "Belgium": "Europe", "Bulgaria": "Europe", "Croatia": "Europe", "Cyprus": "Europe",
+            "Czech Republic": "Europe", "Denmark": "Europe", "Estonia": "Europe", "Finland": "Europe",
+            "France": "Europe", "Germany": "Europe", "Gibraltar": "Europe", "Greece": "Europe",
+            "Holy See (Vatican City)": "Europe", "Hungary": "Europe", "Iceland": "Europe",
+            "Ireland": "Europe", "Italy": "Europe", "Latvia": "Europe", "Liechtenstein": "Europe",
+            "Lithuania": "Europe", "Luxembourg": "Europe", "Malta": "Europe", "Netherlands": "Europe",
+            "Norway": "Europe", "Poland": "Europe", "Portugal": "Europe", "Romania": "Europe",
+            "San Marino": "Europe", "Slovakia": "Europe", "Slovenia": "Europe", "Spain": "Europe",
+            "Sweden": "Europe", "Switzerland": "Europe", "Turkey": "Europe", "Ukraine": "Europe",
+            "United Kingdom": "Europe", "Argentina": "Latin America", "Brazil": "Latin America",
+            "Chile": "Latin America", "Mexico": "Latin America", "Saint Martin (French part)": "Latin America",
+            "Bahrain": "Middle East & North Africa", "Israel": "Middle East & North Africa",
+            "Kuwait": "Middle East & North Africa", "Oman": "Middle East & North Africa",
+            "Qatar": "Middle East & North Africa", "United Arab Emirates": "Middle East & North Africa",
+            "Canada": "North America", "United States": "North America"
+        };
+
+        // CKO first, then competitors in order
+        const ALL_COMPS = ['cko', 'stripe', 'adyen', 'worldpay', 'nuvei'];
+        const COMP_META = {
+            cko:      { label: 'CKO',      color: '#0050FF', textColor: '#ffffff' },
+            stripe:   { label: 'Stripe',   color: '#635bff', textColor: '#ffffff' },
+            adyen:    { label: 'Adyen',    color: '#00c389', textColor: '#ffffff' },
+            worldpay: { label: 'WorldPay', color: '#d32f2f', textColor: '#ffffff' },
+            nuvei:    { label: 'Nuvei',    color: '#e5401a', textColor: '#ffffff' },
+        };
+
         let fullData = {};
-        const comps = ['stripe', 'adyen', 'worldpay'];
+        let currentRegion = 'All';
+        let currentFlow = 'both';           // 'both' | 'domestic' | 'cross_border'
+        let activeComps = new Set(ALL_COMPS);
+
+        const REGION_LABELS = {
+            'All': 'ALL', 'Africa': 'AFRICA', 'Asia Pacific': 'APAC',
+            'Europe': 'EUROPE', 'Latin America': 'LATAM',
+            'Middle East & North Africa': 'MENA', 'North America': 'NORTH AM'
+        };
 
         async function init() {
-            for (let c of comps) {
+            for (let c of ALL_COMPS) {
                 try {
-                    // Cache buster for live GitHub deployment
-                    const response = await fetch(`./data/${c}.json?t=${Date.now()}`);
-                    fullData[c] = await response.json();
-                } catch (e) { console.warn(`${c}.json not found.`); }
+                    const res = await fetch(`./data/${c}.json?t=${Date.now()}`);
+                    fullData[c] = await res.json();
+                } catch (e) { console.warn(`${c}.json missing.`); }
             }
-            renderTable('All');
+            buildCompToggles();
+            renderTable();
         }
 
-        function renderTable(regionFilter) {
+        // ── Competitor toggle buttons ─────────────────────────────────
+        function buildCompToggles() {
+            const container = document.getElementById('comp-toggles');
+            container.innerHTML = '';
+            ALL_COMPS.forEach(c => {
+                const meta = COMP_META[c];
+                const btn = document.createElement('button');
+                btn.id = `toggle-${c}`;
+                btn.className = `comp-toggle active px-4 py-1.5 text-[9px] font-black rounded-xl uppercase tracking-wider transition-all`;
+                btn.style.background = meta.color;
+                btn.style.color = meta.textColor;
+                btn.innerText = meta.label;
+                btn.onclick = () => toggleComp(c);
+                container.appendChild(btn);
+            });
+        }
+
+        function toggleComp(c) {
+            if (activeComps.has(c)) {
+                // Don't allow all competitors to be hidden
+                if (activeComps.size === 1) return;
+                activeComps.delete(c);
+            } else {
+                activeComps.add(c);
+            }
+            const btn = document.getElementById(`toggle-${c}`);
+            btn.classList.toggle('active', activeComps.has(c));
+            renderTable();
+        }
+
+        // ── Region filter ─────────────────────────────────────────────
+        function setRegion(region) {
+            currentRegion = region;
+            document.querySelectorAll('.region-btn').forEach(btn => {
+                const isActive = btn.innerText.trim() === REGION_LABELS[region];
+                btn.classList.toggle('bg-white', isActive);
+                btn.classList.toggle('shadow-sm', isActive);
+                btn.classList.toggle('hover:bg-white/50', !isActive);
+            });
+            renderTable();
+        }
+
+        // ── Flow filter ───────────────────────────────────────────────
+        function setFlow(flow) {
+            currentFlow = flow;
+            document.querySelectorAll('.flow-btn').forEach(btn => {
+                const label = btn.innerText.trim().toLowerCase().replace('-', '_');
+                const isActive = label === flow || btn.innerText.trim().toLowerCase() === flow;
+                btn.classList.toggle('bg-white', isActive);
+                btn.classList.toggle('shadow-sm', isActive);
+                btn.classList.toggle('hover:bg-white/50', !isActive);
+            });
+            renderTable();
+        }
+
+        // ── Render ────────────────────────────────────────────────────
+        function renderTable() {
+            const visibleComps = ALL_COMPS.filter(c => activeComps.has(c));
+            const flows = currentFlow === 'both' ? ['domestic', 'cross_border']
+                        : currentFlow === 'domestic' ? ['domestic']
+                        : ['cross_border'];
+
+            // Rebuild thead
+            const thead = document.getElementById('main-thead');
+            thead.innerHTML = '';
+            const headerRow = document.createElement('tr');
+            headerRow.innerHTML = `<th class="px-6 py-5 text-left col-header font-black text-slate-400 uppercase tracking-widest w-56">Market</th>`;
+            if (flows.length > 1) {
+                headerRow.innerHTML += `<th class="px-4 py-5 text-left col-header font-black text-slate-400 uppercase tracking-widest w-28">Flow</th>`;
+            }
+            visibleComps.forEach(c => {
+                const meta = COMP_META[c];
+                const isCKO = c === 'cko';
+                const color = isCKO ? meta.color : '#94a3b8';
+                headerRow.innerHTML += `<th class="px-6 py-5 text-center col-header font-black uppercase tracking-widest border-l border-slate-100" style="color:${color}">${meta.label}</th>`;
+            });
+            thead.appendChild(headerRow);
+
+            // Rebuild tbody
             const tbody = document.getElementById('main-table');
+            const searchQuery = document.getElementById('marketSearch').value.toLowerCase();
             tbody.innerHTML = '';
-            
-            const allCountries = [...new Set(Object.values(fullData).flatMap(d => Object.keys(d.Countries)))].sort();
 
-            allCountries.forEach(country => {
-                const countryRegion = fullData['stripe']?.Countries[country]?.region || fullData['adyen']?.Countries[country]?.region;
-                if (regionFilter !== 'All' && countryRegion !== regionFilter) return;
+            const countries = Object.keys(MASTER_CONFIG).sort();
 
-                ['domestic', 'cross_border'].forEach((flow, i) => {
+            countries.forEach(country => {
+                const region = MASTER_CONFIG[country];
+                if (currentRegion !== 'All' && region !== currentRegion) return;
+
+                if (searchQuery) {
+                    const nameMatch = country.toLowerCase().includes(searchQuery);
+                    const tagMatch = ALL_COMPS.some(c =>
+                        ['domestic', 'cross_border'].some(fl =>
+                            (fullData[c]?.Countries[country]?.[fl]?.tags || [])
+                                .some(t => t.toLowerCase().includes(searchQuery))
+                        )
+                    );
+                    if (!nameMatch && !tagMatch) return;
+                }
+
+                flows.forEach((flow, i) => {
                     const tr = document.createElement('tr');
-                    tr.className = "country-row transition-all";
+                    tr.className = 'country-row transition-all';
 
+                    // Market cell — rowspan covers all visible flows
                     if (i === 0) {
-                        tr.innerHTML = `<td rowspan="2" class="px-8 py-8 font-extrabold text-slate-900 border-r border-slate-50 align-top">
-                                            <div class="text-lg tracking-tight">${country}</div>
-                                            <div class="text-[9px] text-slate-400 uppercase mt-1 tracking-widest">${countryRegion}</div>
-                                        </td>`;
+                        const marketTd = document.createElement('td');
+                        marketTd.rowSpan = flows.length;
+                        marketTd.className = 'px-6 py-6 font-extrabold text-slate-900 border-r border-slate-50 align-top';
+                        marketTd.innerHTML = `<div class="col-market tracking-tight">${country}</div>
+                                              <div class="col-region text-slate-400 uppercase mt-1 tracking-widest">${region}</div>`;
+                        tr.appendChild(marketTd);
                     }
 
-                    const flowLabel = flow === 'domestic' ? 'Domestic' : 'Cross-border';
-                    tr.innerHTML += `<td class="px-4 py-6 text-slate-400 font-bold text-[10px] uppercase border-r border-slate-50">${flowLabel}</td>`;
-                    
-                    comps.forEach(c => {
+                    // Flow label cell (only if showing both flows)
+                    if (flows.length > 1) {
+                        const flowTd = document.createElement('td');
+                        flowTd.className = 'px-4 py-4 text-slate-400 font-bold col-flow uppercase border-r border-slate-50';
+                        flowTd.innerText = flow === 'domestic' ? 'Domestic' : 'Cross-border';
+                        tr.appendChild(flowTd);
+                    }
+
+                    // Competitor cells
+                    visibleComps.forEach(c => {
                         const cell = fullData[c]?.Countries[country]?.[flow];
                         const td = document.createElement('td');
-                        td.className = `px-8 py-6 text-center border-l border-slate-50 align-middle`;
-                        
+                        const statusClass = cell ? `cell-${cell.status}` : '';
+                        td.className = `px-6 py-4 text-center border-l border-slate-50 align-middle ${statusClass}`;
+
                         if (cell) {
-                            const icon = cell.status === 'supported' ? '✓' : (cell.status === 'partial' ? '≈' : '×');
-                            const pills = cell.tags.map(t => `<span class="rail-pill">${t}</span>`).join('');
-                            
+                            const BADGE_LABEL = { supported: '✓ Supported', partial: '≈ Partial', not_available: '✕ No Cover' };
+                            const pills = cell.tags.length
+                                ? cell.tags.map(t => `<span class="rail-pill">${t}</span>`).join('')
+                                : '';
                             td.innerHTML = `
-                                <div class="status-${cell.status} mb-3">${icon}</div>
-                                <div class="flex flex-wrap justify-center max-w-xs mx-auto">${pills}</div>
-                                <div class="text-[9px] text-slate-400 mt-3 italic font-semibold leading-relaxed px-4">${cell.notes}</div>
+                                <div class="status-badge ${cell.status}">${BADGE_LABEL[cell.status] || cell.status}</div>
+                                ${pills ? `<div class="pill-container">${pills}</div>` : ''}
+                                <div class="col-notes text-slate-400 mt-1 italic font-medium">${cell.notes}</div>
                             `;
                         } else {
-                            td.innerHTML = `<span class="text-slate-200 font-light italic text-[10px] uppercase tracking-widest">No Intel</span>`;
+                            td.innerHTML = `<span class="col-no-intel text-slate-200 italic uppercase tracking-widest">No Intel</span>`;
                         }
                         tr.appendChild(td);
                     });
+
                     tbody.appendChild(tr);
                 });
             });
         }
 
-        function filterRegion(region) { renderTable(region); }
         init();
     </script>
 </body>

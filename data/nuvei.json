@@ -1,0 +1,946 @@
+{
+  "Countries": {
+    "Argentina": {
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Argencard",
+          "Cabal",
+          "Naranja"
+        ],
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Argencard",
+          "Cabal",
+          "Naranja"
+        ],
+        "notes": "International card processing via global network"
+      }
+    },
+    "Australia": {
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard"
+        ],
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard"
+        ],
+        "notes": "International card processing via global network"
+      }
+    },
+    "Austria": {
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard",
+          "Amex",
+          "Diners/Discover"
+        ],
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard",
+          "Amex",
+          "Diners/Discover"
+        ],
+        "notes": "International card processing via global network"
+      }
+    },
+    "Belgium": {
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard",
+          "Amex",
+          "Diners/Discover",
+          "Bancontact"
+        ],
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard",
+          "Amex",
+          "Diners/Discover"
+        ],
+        "notes": "International card processing via global network"
+      }
+    },
+    "Brazil": {
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard",
+          "Elo",
+          "Hipercard",
+          "BR Local Cards"
+        ],
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard"
+        ],
+        "notes": "International card processing via global network"
+      }
+    },
+    "Bulgaria": {
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard",
+          "Amex",
+          "Diners/Discover"
+        ],
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard",
+          "Amex",
+          "Diners/Discover"
+        ],
+        "notes": "International card processing via global network"
+      }
+    },
+    "Canada": {
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard",
+          "Amex",
+          "Diners/Discover"
+        ],
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard",
+          "Amex",
+          "Diners/Discover"
+        ],
+        "notes": "International card processing via global network"
+      }
+    },
+    "Chile": {
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard"
+        ],
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard"
+        ],
+        "notes": "International card processing via global network"
+      }
+    },
+    "China": {
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "UnionPay"
+        ],
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "UnionPay"
+        ],
+        "notes": "International card processing via global network"
+      }
+    },
+    "Croatia": {
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard",
+          "Amex",
+          "Diners/Discover"
+        ],
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard",
+          "Amex",
+          "Diners/Discover"
+        ],
+        "notes": "International card processing via global network"
+      }
+    },
+    "Cyprus": {
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard",
+          "Amex",
+          "Diners/Discover"
+        ],
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard",
+          "Amex",
+          "Diners/Discover"
+        ],
+        "notes": "International card processing via global network"
+      }
+    },
+    "Czech Republic": {
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard",
+          "Amex",
+          "Diners/Discover"
+        ],
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard",
+          "Amex",
+          "Diners/Discover"
+        ],
+        "notes": "International card processing via global network"
+      }
+    },
+    "Denmark": {
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard",
+          "Amex",
+          "Diners/Discover"
+        ],
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard",
+          "Amex",
+          "Diners/Discover"
+        ],
+        "notes": "International card processing via global network"
+      }
+    },
+    "Egypt": {
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Africa Cards"
+        ],
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Africa Cards"
+        ],
+        "notes": "International card processing via global network"
+      }
+    },
+    "Estonia": {
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard",
+          "Amex",
+          "Diners/Discover"
+        ],
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard",
+          "Amex",
+          "Diners/Discover"
+        ],
+        "notes": "International card processing via global network"
+      }
+    },
+    "Finland": {
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard",
+          "Amex",
+          "Diners/Discover"
+        ],
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard",
+          "Amex",
+          "Diners/Discover"
+        ],
+        "notes": "International card processing via global network"
+      }
+    },
+    "France": {
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard",
+          "Amex",
+          "Cartes Bancaires",
+          "Diners/Discover"
+        ],
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard",
+          "Amex",
+          "Diners/Discover"
+        ],
+        "notes": "International card processing via global network"
+      }
+    },
+    "Germany": {
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard",
+          "Amex",
+          "Diners/Discover"
+        ],
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard",
+          "Amex",
+          "Diners/Discover"
+        ],
+        "notes": "International card processing via global network"
+      }
+    },
+    "Greece": {
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard",
+          "Amex",
+          "Diners/Discover"
+        ],
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard",
+          "Amex",
+          "Diners/Discover"
+        ],
+        "notes": "International card processing via global network"
+      }
+    },
+    "Hong Kong SAR, China": {
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard"
+        ],
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard"
+        ],
+        "notes": "International card processing via global network"
+      }
+    },
+    "Hungary": {
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard",
+          "Amex",
+          "Diners/Discover"
+        ],
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard",
+          "Amex",
+          "Diners/Discover"
+        ],
+        "notes": "International card processing via global network"
+      }
+    },
+    "India": {
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "RuPay"
+        ],
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "RuPay"
+        ],
+        "notes": "International card processing via global network"
+      }
+    },
+    "Ireland": {
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard",
+          "Amex",
+          "Diners/Discover"
+        ],
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard",
+          "Amex",
+          "Diners/Discover"
+        ],
+        "notes": "International card processing via global network"
+      }
+    },
+    "Italy": {
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard",
+          "Amex",
+          "Diners/Discover"
+        ],
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard",
+          "Amex",
+          "Diners/Discover"
+        ],
+        "notes": "International card processing via global network"
+      }
+    },
+    "Latvia": {
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard",
+          "Amex",
+          "Diners/Discover"
+        ],
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard",
+          "Amex",
+          "Diners/Discover"
+        ],
+        "notes": "International card processing via global network"
+      }
+    },
+    "Lithuania": {
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard",
+          "Amex",
+          "Diners/Discover"
+        ],
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard",
+          "Amex",
+          "Diners/Discover"
+        ],
+        "notes": "International card processing via global network"
+      }
+    },
+    "Luxembourg": {
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard",
+          "Amex",
+          "Diners/Discover"
+        ],
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard",
+          "Amex",
+          "Diners/Discover"
+        ],
+        "notes": "International card processing via global network"
+      }
+    },
+    "Malta": {
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard",
+          "Amex",
+          "Diners/Discover"
+        ],
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard",
+          "Amex",
+          "Diners/Discover"
+        ],
+        "notes": "International card processing via global network"
+      }
+    },
+    "Mexico": {
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard"
+        ],
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard"
+        ],
+        "notes": "International card processing via global network"
+      }
+    },
+    "Netherlands": {
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard",
+          "Amex",
+          "Diners/Discover"
+        ],
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard",
+          "Amex",
+          "Diners/Discover"
+        ],
+        "notes": "International card processing via global network"
+      }
+    },
+    "Nigeria": {
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Africa Cards"
+        ],
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Africa Cards"
+        ],
+        "notes": "International card processing via global network"
+      }
+    },
+    "Poland": {
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard",
+          "Amex",
+          "Diners/Discover"
+        ],
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard",
+          "Amex",
+          "Diners/Discover"
+        ],
+        "notes": "International card processing via global network"
+      }
+    },
+    "Portugal": {
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard",
+          "Amex",
+          "Diners/Discover"
+        ],
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard",
+          "Amex",
+          "Diners/Discover"
+        ],
+        "notes": "International card processing via global network"
+      }
+    },
+    "Romania": {
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard",
+          "Amex",
+          "Diners/Discover"
+        ],
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard",
+          "Amex",
+          "Diners/Discover"
+        ],
+        "notes": "International card processing via global network"
+      }
+    },
+    "Singapore": {
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard"
+        ],
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard"
+        ],
+        "notes": "International card processing via global network"
+      }
+    },
+    "Slovakia": {
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard",
+          "Amex",
+          "Diners/Discover"
+        ],
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard",
+          "Amex",
+          "Diners/Discover"
+        ],
+        "notes": "International card processing via global network"
+      }
+    },
+    "Slovenia": {
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard",
+          "Amex",
+          "Diners/Discover"
+        ],
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard",
+          "Amex",
+          "Diners/Discover"
+        ],
+        "notes": "International card processing via global network"
+      }
+    },
+    "South Korea": {
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard",
+          "KR Local Cards"
+        ],
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard"
+        ],
+        "notes": "International card processing via global network"
+      }
+    },
+    "Spain": {
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard",
+          "Amex",
+          "Diners/Discover"
+        ],
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard",
+          "Amex",
+          "Diners/Discover"
+        ],
+        "notes": "International card processing via global network"
+      }
+    },
+    "Sweden": {
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard",
+          "Amex",
+          "Diners/Discover"
+        ],
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard",
+          "Amex",
+          "Diners/Discover"
+        ],
+        "notes": "International card processing via global network"
+      }
+    },
+    "Switzerland": {
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "PostFinance"
+        ],
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "PostFinance"
+        ],
+        "notes": "International card processing via global network"
+      }
+    },
+    "Turkey": {
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Troy"
+        ],
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Troy"
+        ],
+        "notes": "International card processing via global network"
+      }
+    },
+    "United Arab Emirates": {
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard"
+        ],
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard"
+        ],
+        "notes": "International card processing via global network"
+      }
+    },
+    "United Kingdom": {
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard",
+          "Amex",
+          "Diners/Discover"
+        ],
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard",
+          "Amex",
+          "Diners/Discover"
+        ],
+        "notes": "International card processing via global network"
+      }
+    },
+    "United States": {
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard",
+          "Amex",
+          "Diners/Discover"
+        ],
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Visa",
+          "Mastercard",
+          "Amex",
+          "Diners/Discover"
+        ],
+        "notes": "International card processing via global network"
+      }
+    },
+    "Zambia": {
+      "domestic": {
+        "status": "supported",
+        "tags": [
+          "Africa Cards"
+        ],
+        "notes": "Full local acquiring"
+      },
+      "cross_border": {
+        "status": "supported",
+        "tags": [
+          "Africa Cards"
+        ],
+        "notes": "International card processing via global network"
+      }
+    }
+  }
+}
